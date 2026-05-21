@@ -4,81 +4,97 @@ import { ExtractedFacts } from '../dto/extract-facts.dto';
 
 @Injectable()
 export class ResearchService {
-    constructor(private llmService: LlmService) { }
+  constructor(private llmService: LlmService) {}
 
-    async extractFacts(noteText: string): Promise<ExtractedFacts> {
-        const prompt = this.buildExtractionPrompt(noteText);
+  async extractFacts(noteText: string): Promise<ExtractedFacts> {
+    const prompt = this.buildExtractionPrompt(noteText);
 
-        let retries = 0;
-        while (retries < 3) {
-            try {
-                const response = await this.llmService.callClaude(
-                    [{ role: 'user', content: prompt }],
-                    0, // temperature = 0 for consistency
-                    500, // maxTokens
-                );
+    let retries = 0;
+    while (retries < 3) {
+      try {
+        const response = await this.llmService.callClaude(
+          [{ role: 'user', content: prompt }],
+          0, // temperature = 0 for consistency
+          500, // maxTokens
+        );
 
-                // Clean the response: extract JSON from markdown blocks if needed
-                const cleanedText = this.extractJsonFromResponse(response.text);
+        // Clean the response: extract JSON from markdown blocks if needed
+        const cleanedText = this.extractJsonFromResponse(response.text);
 
-                // Log for debugging
-                console.log('Raw Claude response:', response.text);
-                console.log('Cleaned text:', cleanedText);
+        // Log for debugging
+        console.log('Raw Claude response:', response.text);
+        console.log('Cleaned text:', cleanedText);
 
-                // Parse and validate JSON
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const parsed = JSON.parse(cleanedText);
+        // Parse and validate JSON
+        const parsed = JSON.parse(cleanedText) as unknown;
 
-                // Basic validation
-                if (!parsed.summary || !Array.isArray(parsed.topics)) {
-                    throw new Error('Invalid response structure');
-                }
-
-                return {
-                    name: parsed.name || undefined,
-                    summary: parsed.summary,
-                    topics: parsed.topics,
-                    sentiment: parsed.sentiment || 'neutral',
-                    confidence: parsed.confidence || 0.8,
-                };
-            } catch (error) {
-                retries++;
-                if (retries >= 3) {
-                    throw new Error(
-                        `Failed to extract facts after 3 retries: ${error.message}`,
-                    );
-                }
-                console.warn(`Retry ${retries}: ${error.message}`);
-            }
+        if (!this.isExtractedFacts(parsed)) {
+          throw new Error('Invalid response structure');
         }
 
-        throw new Error('Unexpected error in extractFacts');
+        return {
+          name: parsed.name || undefined,
+          summary: parsed.summary,
+          topics: parsed.topics,
+          sentiment: parsed.sentiment || 'neutral',
+          confidence: parsed.confidence || 0.8,
+        };
+      } catch (error: unknown) {
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        retries++;
+        if (retries >= 3) {
+          throw new Error(
+            `Failed to extract facts after 3 retries: ${errorMessage}`,
+          );
+        }
+        console.warn(`Retry ${retries}: ${errorMessage}`);
+      }
     }
 
-    private extractJsonFromResponse(text: string): string {
-        // Try to extract JSON from markdown code blocks
-        const jsonBlockMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
-        if (jsonBlockMatch) {
-            return jsonBlockMatch[1].trim();
-        }
+    throw new Error('Unexpected error in extractFacts');
+  }
 
-        // Try to extract JSON from plain code blocks
-        const codeBlockMatch = text.match(/```\s*([\s\S]*?)\s*```/);
-        if (codeBlockMatch) {
-            return codeBlockMatch[1].trim();
-        }
-        // Try to find JSON object directly (starts with { and ends with })
-        const jsonMatch = text.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-            return jsonMatch[0].trim();
-        }
-
-        // If nothing worked, return trimmed text and let JSON.parse handle the error
-        return text.trim();
+  private extractJsonFromResponse(text: string): string {
+    // Try to extract JSON from markdown code blocks
+    const jsonBlockMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
+    if (jsonBlockMatch) {
+      return jsonBlockMatch[1].trim();
     }
 
-    private buildExtractionPrompt(noteText: string): string {
-        return `You are a research assistant extracting facts from CRM notes.
+    // Try to extract JSON from plain code blocks
+    const codeBlockMatch = text.match(/```\s*([\s\S]*?)\s*```/);
+    if (codeBlockMatch) {
+      return codeBlockMatch[1].trim();
+    }
+    // Try to find JSON object directly (starts with { and ends with })
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      return jsonMatch[0].trim();
+    }
+
+    // If nothing worked, return trimmed text and let JSON.parse handle the error
+    return text.trim();
+  }
+
+  private isExtractedFacts(parsed: unknown): parsed is ExtractedFacts {
+    if (!parsed || typeof parsed !== 'object') {
+      return false;
+    }
+
+    const candidate = parsed as Record<string, unknown>;
+    const hasSummary = typeof candidate.summary === 'string';
+    const hasTopics =
+      Array.isArray(candidate.topics) &&
+      candidate.topics.every((topic) => typeof topic === 'string');
+    const hasSentiment = typeof candidate.sentiment === 'string';
+    const hasConfidence = typeof candidate.confidence === 'number';
+
+    return hasSummary && hasTopics && hasSentiment && hasConfidence;
+  }
+
+  private buildExtractionPrompt(noteText: string): string {
+    return `You are a research assistant extracting facts from CRM notes.
     Extract the following from the provided text:
     - Name (person or company name, if mentioned)
     - Summary (1-2 sentence summary of the note)
@@ -97,5 +113,5 @@ export class ResearchService {
     
     Now extract from this text:
     TEXT: ${noteText}`;
-    }
+  }
 }
