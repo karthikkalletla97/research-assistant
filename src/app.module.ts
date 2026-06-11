@@ -12,5 +12,6 @@ import { ConfigModule } from '@nestjs/config';
     LlmModule,
     ResearchModule,
   ],
+  providers: [],
 })
 export class AppModule {}

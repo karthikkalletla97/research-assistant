@@ -1,21 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { LlmService } from 'src/llm/llm/llm.service';
 import { ExtractedFacts } from '../dto/extract-facts.dto';
+import { ModelSelectorService } from '../model-selector/model-selector.service';
+import { CacheManagerService } from '../cache/cache-manager.service';
 
 @Injectable()
 export class ResearchService {
-  constructor(private llmService: LlmService) {}
+  constructor(
+    private llmService: LlmService,
+    private modelSelector: ModelSelectorService,
+    private cacheManager: CacheManagerService,
+  ) {}
 
   async extractFacts(noteText: string): Promise<ExtractedFacts> {
+    // TRY CACHE FIRST (using hash-based strategy)
+    const cachedResult = this.cacheManager.get(noteText, 'hash');
+    if (cachedResult) {
+      console.log('✅ Returning cached result');
+      return cachedResult as ExtractedFacts;
+    }
+
+    console.log('❌ Cache miss, calling Claude API');
     const prompt = this.buildExtractionPrompt(noteText);
 
     let retries = 0;
     while (retries < 3) {
       try {
+        // SELECT MODEL BASED ON RISK
+        const model = this.modelSelector.selectModel(noteText);
+        const debugInfo = this.modelSelector.getDebugInfo(noteText);
+        console.log('Model selection debug:', debugInfo);
+
         const response = await this.llmService.callClaude(
           [{ role: 'user', content: prompt }],
           0, // temperature = 0 for consistency
           500, // maxTokens
+          model, // PASS THE SELECTED MODEL
         );
 
         // Clean the response: extract JSON from markdown blocks if needed
@@ -32,13 +52,17 @@ export class ResearchService {
           throw new Error('Invalid response structure');
         }
 
-        return {
+        const result: ExtractedFacts = {
           name: parsed.name || undefined,
           summary: parsed.summary,
           topics: parsed.topics,
           sentiment: parsed.sentiment || 'neutral',
           confidence: parsed.confidence || 0.8,
         };
+        // Store in cache (both hash and semantic for better future hits)
+        this.cacheManager.set(noteText, result, 'both', 1440); // 1 day TTL
+
+        return result;
       } catch (error: unknown) {
         const errorMessage =
           error instanceof Error ? error.message : String(error);
@@ -111,7 +135,7 @@ export class ResearchService {
     2. Input: "Called Sarah Lee. Budget constraints. Will revisit in Q3."
        Output: { "name": "Sarah Lee", "summary": "Budget constraints, revisit in Q3", "topics": ["budget", "timeline"], "sentiment": "neutral", "confidence": 0.85 }
     
-    Now extract from this text:
+    Now extract key facts from this text:
     TEXT: ${noteText}`;
   }
 }
