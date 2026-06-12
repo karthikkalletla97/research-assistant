@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { LlmModule } from './llm/llm.module';
 import { ResearchModule } from './research/research.module';
 import { ConfigModule } from '@nestjs/config';
+import { MonitoringService } from './monitoring/monitoring.service';
+import { MonitoringModule } from './monitoring/monitoring.module';
 
 @Module({
   imports: [
@@ -11,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     LlmModule,
     ResearchModule,
+    MonitoringModule,
   ],
   providers: [],
 })

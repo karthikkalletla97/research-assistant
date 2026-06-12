@@ -6,15 +6,19 @@ import { ModelSelectorService } from './model-selector/model-selector.service';
 import { HashBasedCacheService } from './cache/hash-based-cache.service';
 import { SemanticCacheService } from './cache/semantic-cache.service';
 import { CacheManagerService } from './cache/cache-manager.service';
+import { CircuitBreakerService } from 'src/llm/circuit-breaker.service';
+import { MonitoringService } from 'src/monitoring/monitoring.service';
+import { MonitoringModule } from 'src/monitoring/monitoring.module';
 
 @Module({
-  imports: [LlmModule],
+  imports: [LlmModule, MonitoringModule],
   providers: [
     ResearchService,
     ModelSelectorService,
     HashBasedCacheService,
     SemanticCacheService,
     CacheManagerService,
+    MonitoringService,
   ],
   controllers: [ResearchController],
 })

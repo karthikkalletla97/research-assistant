@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { LlmService } from 'src/llm/llm/llm.service';
+import { LlmService } from 'src/llm/llm.service';
 import { ExtractedFacts } from '../dto/extract-facts.dto';
 import { ModelSelectorService } from '../model-selector/model-selector.service';
 import { CacheManagerService } from '../cache/cache-manager.service';
+import { CircuitBreakerService } from 'src/llm/circuit-breaker.service';
+import { MonitoringService } from 'src/monitoring/monitoring.service';
 
 @Injectable()
 export class ResearchService {
@@ -10,9 +12,12 @@ export class ResearchService {
     private llmService: LlmService,
     private modelSelector: ModelSelectorService,
     private cacheManager: CacheManagerService,
+    private circuitBreaker: CircuitBreakerService,
+    private monitoringService: MonitoringService,
   ) {}
 
   async extractFacts(noteText: string): Promise<ExtractedFacts> {
+    const startTime = Date.now();
     // TRY CACHE FIRST (using hash-based strategy)
     const cachedResult = this.cacheManager.get(noteText, 'hash');
     if (cachedResult) {
@@ -21,13 +26,28 @@ export class ResearchService {
     }
 
     console.log('❌ Cache miss, calling Claude API');
+
+    // CHECK CIRCUIT BREAKER
+    if (!this.circuitBreaker.canAttempt()) {
+      console.log('⚠️ Circuit breaker is OPEN, returning error');
+      // Return degraded response
+      return {
+        name: undefined,
+        summary:
+          'Service temporarily unavailable. Data from cache unavailable.',
+        topics: [],
+        sentiment: 'neutral',
+        confidence: 0, // Low confidence to indicate degraded
+      };
+    }
+
     const prompt = this.buildExtractionPrompt(noteText);
+    const model = this.modelSelector.selectModel(noteText);
 
     let retries = 0;
     while (retries < 3) {
       try {
         // SELECT MODEL BASED ON RISK
-        const model = this.modelSelector.selectModel(noteText);
         const debugInfo = this.modelSelector.getDebugInfo(noteText);
         console.log('Model selection debug:', debugInfo);
 
@@ -37,6 +57,14 @@ export class ResearchService {
           500, // maxTokens
           model, // PASS THE SELECTED MODEL
         );
+
+        const latencyMs = Date.now() - startTime;
+        const costUSD =
+          response.usage.input_tokens * 0.000003 +
+          response.usage.output_tokens * 0.000015;
+        // RECORD SUCCESS IN CIRCUIT BREAKER
+        this.monitoringService.recordApiCall(model, true, latencyMs, costUSD);
+        this.circuitBreaker.recordSuccess();
 
         // Clean the response: extract JSON from markdown blocks if needed
         const cleanedText = this.extractJsonFromResponse(response.text);
@@ -64,6 +92,7 @@ export class ResearchService {
 
         return result;
       } catch (error: unknown) {
+        const latencyMs = Date.now() - startTime;
         const errorMessage =
           error instanceof Error ? error.message : String(error);
         retries++;
@@ -73,6 +102,18 @@ export class ResearchService {
           );
         }
         console.warn(`Retry ${retries}: ${errorMessage}`);
+        // RECORD FAILURE IN CIRCUIT BREAKER
+        this.monitoringService.recordApiCall(model, false, latencyMs, 0);
+        this.circuitBreaker.recordFailure();
+        console.error('Failed to extract facts:', error);
+
+        return {
+          name: undefined,
+          summary: 'Error extracting facts:' + errorMessage,
+          topics: [],
+          sentiment: 'neutral',
+          confidence: 0, // Low confidence to indicate error
+        };
       }
     }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
+import { RetryService } from './retry.service';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -18,7 +19,10 @@ export class LlmService {
   private readonly apiUrl = 'https://api.anthropic.com/v1/messages';
   private readonly model: string;
 
-  constructor(private configService: ConfigService) {
+  constructor(
+    private configService: ConfigService,
+    private retryService: RetryService,
+  ) {
     this.apiKey = this.configService.get<string>('CLAUDE_API_KEY')!;
     if (!this.apiKey) {
       throw new Error('CLAUDE_API_KEY not found in environment variables');
@@ -31,6 +35,26 @@ export class LlmService {
     messages: Message[],
     temperature: number = 0.5,
     maxTokens: number = 1024,
+    model?: string,
+  ): Promise<{
+    text: string;
+    usage: { input_tokens: number; output_tokens: number };
+  }> {
+    return this.retryService.executeWithRetry(
+      () =>
+        this.makeRequestWithTimeout(messages, temperature, maxTokens, model),
+      3,
+      1000,
+    );
+  }
+
+  /**
+   * Actual API call (without retry logic)
+   */
+  private async makeRequest(
+    messages: Message[],
+    temperature: number,
+    maxTokens: number,
     model?: string,
   ): Promise<{
     text: string;
@@ -62,5 +86,27 @@ export class LlmService {
       console.error('Claude API error:', error);
       throw new Error(`Failed to call Claude API: ${error.message}`);
     }
+  }
+
+  private async makeRequestWithTimeout(
+    messages: Message[],
+    temperature: number,
+    maxTokens: number,
+    model?: string,
+    timeoutMs: number = 30000, // 30 second timeout
+  ): Promise<{
+    text: string;
+    usage: { input_tokens: number; output_tokens: number };
+  }> {
+    return Promise.race([
+      this.makeRequest(messages, temperature, maxTokens, model),
+      this.createTimeout(timeoutMs),
+    ]);
+  }
+
+  private createTimeout(ms: number): Promise<never> {
+    return new Promise((_, reject) =>
+      setTimeout(() => reject(new Error(`Request timeout after ${ms}ms`)), ms),
+    );
   }
 }

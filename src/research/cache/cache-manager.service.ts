@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { HashBasedCacheService } from './hash-based-cache.service';
 import { SemanticCacheService } from './semantic-cache.service';
+import { MonitoringService } from 'src/monitoring/monitoring.service';
 
 @Injectable()
 export class CacheManagerService {
   constructor(
     private hashCache: HashBasedCacheService,
     private semanticCache: SemanticCacheService,
+    private monitoring: MonitoringService,
   ) {}
 
   /**
@@ -19,6 +21,7 @@ export class CacheManagerService {
     if (strategy === 'hash' || strategy === 'both') {
       const hashResult = this.hashCache.get(noteText);
       if (hashResult) {
+        this.monitoring.recordCacheEvent(true); // HIT
         console.log('Got result from hash cache');
         return hashResult;
       }
@@ -28,11 +31,13 @@ export class CacheManagerService {
       const semanticResult = this.semanticCache.get(noteText);
       if (semanticResult) {
         console.log('Got result from semantic cache');
+        this.monitoring.recordCacheEvent(true); // HIT
         return semanticResult;
       }
     }
 
     console.log('No cache hit');
+    this.monitoring.recordCacheEvent(false); // MISS
     return null;
   }
 
