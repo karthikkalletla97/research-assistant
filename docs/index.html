@@ -12,16 +12,17 @@
         }
 
         :root {
-            --neon-cyan: #00D9FF;
-            --neon-purple: #9D4EDD;
-            --neon-pink: #FF006E;
-            --electric-blue: #3A86FF;
-            --vibrant-green: #06FFA5;
-            --dark-bg: #0A0E27;
-            --dark-card: #16213E;
-            --accent-gold: #FFD60A;
-            --gray: #B0B0B0;
-            --border: #1E3A5F;
+            --monokai-bg: #272822;
+            --monokai-fg: #F8F8F2;
+            --monokai-red: #F92672;
+            --monokai-orange: #FD971F;
+            --monokai-yellow: #E6DB74;
+            --monokai-green: #A6E22E;
+            --monokai-cyan: #66D9EF;
+            --monokai-purple: #AE81FF;
+            --monokai-gray: #75715E;
+            --monokai-dark: #1E1F1C;
+            --monokai-light: #3E3D32;
         }
 
         html {
@@ -29,38 +30,21 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Cascadia Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             line-height: 1.6;
-            color: #E0E0E0;
-            background: var(--dark-bg);
+            color: var(--monokai-fg);
+            background: var(--monokai-bg);
             overflow-x: hidden;
-        }
-
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 0%, rgba(255, 0, 110, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
         }
 
         /* Navigation */
         nav {
-            background: rgba(16, 33, 62, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            background: var(--monokai-dark);
+            border-bottom: 2px solid var(--monokai-cyan);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.1);
+            box-shadow: 0 0 20px rgba(102, 217, 239, 0.2);
         }
 
         nav .container {
@@ -73,14 +57,11 @@
         }
 
         nav .logo {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+            color: var(--monokai-cyan);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(102, 217, 239, 0.5);
         }
 
         nav .nav-links {
@@ -89,17 +70,18 @@
         }
 
         nav a {
-            color: var(--gray);
+            color: var(--monokai-fg);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
 
         nav a:hover {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            color: var(--monokai-cyan);
+            text-shadow: 0 0 10px rgba(102, 217, 239, 0.5);
         }
 
         nav a::after {
@@ -109,9 +91,8 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            background: var(--monokai-cyan);
             transition: width 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
         }
 
         nav a:hover::after {
@@ -126,9 +107,9 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(10, 14, 39, 0.5) 0%, rgba(22, 33, 62, 0.8) 100%);
-            border-bottom: 2px solid var(--border);
-            color: #E0E0E0;
+            background: linear-gradient(135deg, var(--monokai-dark) 0%, var(--monokai-bg) 100%);
+            border-bottom: 2px solid var(--monokai-yellow);
+            color: var(--monokai-fg);
             padding: 8rem 2rem;
             position: relative;
             overflow: hidden;
@@ -137,27 +118,27 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+            top: -30%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(166, 226, 46, 0.1) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 20s ease-in-out infinite;
-            filter: blur(40px);
+            filter: blur(60px);
         }
 
         .hero::after {
             content: '';
             position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, transparent 70%);
+            bottom: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(102, 217, 239, 0.1) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 25s ease-in-out infinite reverse;
-            filter: blur(40px);
+            filter: blur(60px);
         }
 
         .hero .container {
@@ -171,24 +152,23 @@
             margin-bottom: 1rem;
             line-height: 1.1;
             animation: slideDown 0.7s ease-out;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--vibrant-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--monokai-cyan);
             letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(102, 217, 239, 0.3);
         }
 
         .hero .role {
-            font-size: 1.3rem;
-            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            color: var(--monokai-yellow);
             margin-bottom: 1.5rem;
-            font-weight: 600;
+            font-weight: 700;
             animation: slideUp 0.7s ease-out 0.1s both;
+            letter-spacing: 1px;
         }
 
         .hero .subtitle {
-            font-size: 1.2rem;
-            color: var(--gray);
+            font-size: 1.15rem;
+            color: var(--monokai-fg);
             margin-bottom: 2rem;
             line-height: 1.8;
             animation: slideUp 0.7s ease-out 0.2s both;
@@ -196,18 +176,20 @@
         }
 
         .hero .transition-note {
-            background: rgba(0, 217, 255, 0.1);
-            border-left: 3px solid var(--neon-cyan);
-            padding: 1.2rem;
-            border-radius: 6px;
+            background: var(--monokai-light);
+            border: 2px solid var(--monokai-cyan);
+            border-left: 4px solid var(--monokai-green);
+            padding: 1.5rem;
+            border-radius: 8px;
             margin-bottom: 2.5rem;
             animation: slideUp 0.7s ease-out 0.3s both;
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
+            box-shadow: 0 0 15px rgba(102, 217, 239, 0.1);
         }
 
         .transition-note strong {
-            color: var(--neon-cyan);
+            color: var(--monokai-green);
         }
 
         .hero .cta-buttons {
@@ -219,39 +201,40 @@
 
         .btn {
             padding: 1rem 2rem;
-            border-radius: 8px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1rem;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             display: inline-block;
+            letter-spacing: 1px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue));
-            color: var(--dark-bg);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
-            border: 1px solid var(--neon-cyan);
+            background: var(--monokai-cyan);
+            color: var(--monokai-dark);
+            box-shadow: 0 0 20px rgba(102, 217, 239, 0.4);
+            border: 2px solid var(--monokai-cyan);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+            box-shadow: 0 0 40px rgba(102, 217, 239, 0.6);
         }
 
         .btn-secondary {
-            background: rgba(0, 217, 255, 0.1);
-            color: var(--neon-cyan);
-            border: 2px solid var(--neon-cyan);
-            backdrop-filter: blur(10px);
+            background: transparent;
+            color: var(--monokai-yellow);
+            border: 2px solid var(--monokai-yellow);
+            box-shadow: 0 0 15px rgba(230, 219, 116, 0.2);
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 217, 255, 0.2);
+            background: var(--monokai-light);
             transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+            box-shadow: 0 0 30px rgba(230, 219, 116, 0.4);
         }
 
         @keyframes float {
@@ -283,9 +266,9 @@
 
         /* About Section */
         .about-section {
-            background: var(--dark-card);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            background: var(--monokai-bg);
+            border-top: 2px solid var(--monokai-orange);
+            border-bottom: 2px solid var(--monokai-purple);
             padding: 6rem 0;
         }
 
@@ -301,20 +284,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 350px;
+            min-height: 400px;
         }
 
         .headshot-frame {
             position: relative;
             width: 300px;
-            height: 350px;
-            border: 2px solid var(--neon-cyan);
-            border-radius: 12px;
+            height: 380px;
+            border: 3px solid var(--monokai-cyan);
+            border-radius: 8px;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(157, 78, 221, 0.1));
+            background: var(--monokai-light);
             box-shadow: 
-                0 0 30px rgba(0, 217, 255, 0.3),
-                inset 0 0 30px rgba(0, 217, 255, 0.1);
+                0 0 30px rgba(102, 217, 239, 0.4),
+                inset 0 0 30px rgba(102, 217, 239, 0.1);
         }
 
         .headshot-frame::before {
@@ -324,7 +307,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(0, 217, 255, 0.1) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(102, 217, 239, 0.1) 50%, transparent 70%);
             animation: shimmer 3s infinite;
             z-index: 1;
         }
@@ -332,16 +315,16 @@
         .headshot-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(157, 78, 221, 0.2));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gray);
+            color: var(--monokai-gray);
             font-size: 0.9rem;
             text-align: center;
             padding: 1rem;
             position: relative;
             z-index: 2;
+            background: var(--monokai-light);
         }
 
         .headshot-img {
@@ -358,50 +341,55 @@
         }
 
         .about-text h2 {
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.8rem;
+            color: var(--monokai-yellow);
             margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .about-text-box {
+            background: var(--monokai-light);
+            border: 2px solid var(--monokai-yellow);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(230, 219, 116, 0.1);
         }
 
         .about-text p {
-            color: var(--gray);
+            color: var(--monokai-fg);
             line-height: 1.8;
             margin-bottom: 1.5rem;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
         .fun-fact {
-            background: rgba(0, 217, 255, 0.1);
-            border-left: 3px solid var(--vibrant-green);
+            background: var(--monokai-bg);
+            border: 2px solid var(--monokai-green);
+            border-left: 4px solid var(--monokai-green);
             padding: 1.5rem;
             border-radius: 8px;
             margin-top: 2rem;
+            box-shadow: 0 0 15px rgba(166, 226, 46, 0.1);
         }
 
         .fun-fact strong {
-            color: var(--vibrant-green);
+            color: var(--monokai-green);
         }
 
         /* Section Styling */
         section {
             padding: 6rem 0;
             position: relative;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--monokai-light);
         }
 
         section h2 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 900;
             margin-bottom: 4rem;
             text-align: center;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--vibrant-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
+            color: var(--monokai-yellow);
+            letter-spacing: 1px;
         }
 
         /* Projects Grid */
@@ -412,38 +400,27 @@
         }
 
         .project-card {
-            background: var(--dark-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            background: var(--monokai-light);
+            border: 2px solid var(--monokai-cyan);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.1);
+            box-shadow: 0 0 30px rgba(102, 217, 239, 0.2);
             transition: all 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 0 50px rgba(0, 217, 255, 0.2);
-            border-color: var(--neon-cyan);
+            box-shadow: 0 0 50px rgba(102, 217, 239, 0.3);
+            border-color: var(--monokai-green);
         }
 
         .project-header {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(157, 78, 221, 0.15));
-            border-bottom: 1px solid var(--border);
-            color: var(--neon-cyan);
-            padding: 3rem 2rem;
+            background: var(--monokai-dark);
+            border-bottom: 3px solid var(--monokai-cyan);
+            color: var(--monokai-cyan);
+            padding: 2.5rem;
             position: relative;
             overflow: hidden;
-        }
-
-        .project-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
         }
 
         .project-header h3 {
@@ -451,17 +428,19 @@
             margin-bottom: 0.8rem;
             position: relative;
             z-index: 2;
+            color: var(--monokai-green);
+            letter-spacing: 1px;
         }
 
         .project-header p {
             font-size: 1.1rem;
-            color: var(--gray);
+            color: var(--monokai-cyan);
             position: relative;
             z-index: 2;
         }
 
         .project-body {
-            padding: 3rem 2rem;
+            padding: 2.5rem;
         }
 
         .badges {
@@ -473,17 +452,18 @@
 
         .badge {
             display: inline-block;
-            background: rgba(0, 217, 255, 0.1);
-            color: var(--neon-cyan);
+            background: var(--monokai-dark);
+            color: var(--monokai-yellow);
             padding: 0.6rem 1.2rem;
-            border-radius: 20px;
+            border-radius: 6px;
             font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(0, 217, 255, 0.3);
+            font-weight: 700;
+            border: 1px solid var(--monokai-yellow);
+            letter-spacing: 0.5px;
         }
 
         .project-description {
-            color: var(--gray);
+            color: var(--monokai-fg);
             margin-bottom: 2rem;
             line-height: 1.8;
             font-size: 1.05rem;
@@ -497,59 +477,62 @@
         }
 
         .feature-box {
-            background: rgba(0, 217, 255, 0.05);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            background: var(--monokai-bg);
+            border: 2px solid var(--monokai-gray);
+            border-left: 4px solid var(--monokai-cyan);
             padding: 1.8rem;
-            border-radius: 12px;
+            border-radius: 6px;
             transition: all 0.3s ease;
-            border-left: 4px solid var(--neon-cyan);
         }
 
         .feature-box:nth-child(2) {
-            border-left-color: var(--neon-purple);
+            border-left-color: var(--monokai-green);
         }
 
         .feature-box:nth-child(3) {
-            border-left-color: var(--vibrant-green);
+            border-left-color: var(--monokai-orange);
         }
 
         .feature-box:nth-child(4) {
-            border-left-color: var(--accent-gold);
+            border-left-color: var(--monokai-yellow);
         }
 
         .feature-box:nth-child(5) {
-            border-left-color: var(--neon-pink);
+            border-left-color: var(--monokai-red);
         }
 
         .feature-box:nth-child(6) {
-            border-left-color: var(--electric-blue);
+            border-left-color: var(--monokai-purple);
         }
 
         .feature-box:hover {
             transform: translateY(-5px);
-            background: rgba(0, 217, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+            background: var(--monokai-light);
+            box-shadow: 0 0 20px rgba(102, 217, 239, 0.2);
+            border-color: var(--monokai-cyan);
         }
 
         .feature-box h4 {
-            color: var(--neon-cyan);
+            color: var(--monokai-cyan);
             font-size: 1.1rem;
             margin-bottom: 0.8rem;
             font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .feature-box p {
-            color: var(--gray);
+            color: var(--monokai-fg);
             font-size: 0.95rem;
             line-height: 1.6;
         }
 
         .metrics {
-            background: rgba(0, 217, 255, 0.05);
+            background: var(--monokai-dark);
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: 8px;
             margin: 2rem 0;
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border: 2px solid var(--monokai-orange);
+            box-shadow: 0 0 20px rgba(253, 151, 31, 0.1);
         }
 
         .metrics-grid {
@@ -560,19 +543,24 @@
 
         .metric {
             text-align: center;
+            background: var(--monokai-light);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--monokai-orange);
         }
 
         .metric-value {
             font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--neon-cyan);
+            font-weight: 900;
+            color: var(--monokai-green);
+            letter-spacing: 1px;
         }
 
         .metric-label {
-            color: var(--gray);
+            color: var(--monokai-fg);
             font-size: 0.9rem;
             margin-top: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .project-links {
@@ -581,7 +569,7 @@
             flex-wrap: wrap;
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            border-top: 2px solid var(--monokai-light);
         }
 
         .project-links a {
@@ -589,24 +577,28 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue));
-            color: var(--dark-bg);
-            border-radius: 8px;
+            background: var(--monokai-dark);
+            color: var(--monokai-yellow);
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+            border: 2px solid var(--monokai-yellow);
+            box-shadow: 0 0 15px rgba(230, 219, 116, 0.2);
+            letter-spacing: 0.5px;
         }
 
         .project-links a:hover {
             transform: translateX(5px);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 30px rgba(230, 219, 116, 0.4);
+            background: var(--monokai-yellow);
+            color: var(--monokai-dark);
         }
 
         /* Experience Timeline */
         .experience-section {
-            background: linear-gradient(180deg, rgba(22, 33, 62, 0.5) 0%, rgba(10, 14, 39, 0.5) 100%);
+            background: var(--monokai-bg);
             padding: 6rem 0;
         }
 
@@ -620,10 +612,10 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 3px;
+            width: 4px;
             height: 100%;
-            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple), var(--vibrant-green));
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+            background: linear-gradient(180deg, var(--monokai-cyan), var(--monokai-green), var(--monokai-yellow));
+            box-shadow: 0 0 20px rgba(102, 217, 239, 0.5);
         }
 
         .timeline-item {
@@ -648,50 +640,53 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background: var(--dark-bg);
-            border: 3px solid var(--neon-cyan);
+            background: var(--monokai-dark);
+            border: 3px solid var(--monokai-cyan);
             border-radius: 50%;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 15px rgba(102, 217, 239, 0.5);
         }
 
         .timeline-item:nth-child(even)::before {
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+            border-color: var(--monokai-green);
+            box-shadow: 0 0 15px rgba(166, 226, 46, 0.5);
         }
 
         .timeline-content {
-            background: var(--dark-card);
+            background: var(--monokai-light);
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
-            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(102, 217, 239, 0.1);
+            border: 2px solid var(--monokai-cyan);
             transition: all 0.3s ease;
             position: relative;
         }
 
         .timeline-content:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 40px rgba(0, 217, 255, 0.2);
-            border-color: var(--neon-cyan);
+            box-shadow: 0 0 40px rgba(102, 217, 239, 0.2);
+            border-color: var(--monokai-yellow);
+            background: var(--monokai-bg);
         }
 
         .timeline-content h3 {
-            font-size: 1.3rem;
-            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            color: var(--monokai-cyan);
             margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
         }
 
         .timeline-content .company {
-            color: var(--neon-purple);
-            font-weight: 600;
+            color: var(--monokai-yellow);
+            font-weight: 700;
             margin-bottom: 0.3rem;
+            letter-spacing: 0.5px;
         }
 
         .timeline-content .period {
-            color: var(--gray);
+            color: var(--monokai-gray);
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
@@ -701,7 +696,7 @@
         }
 
         .timeline-content li {
-            color: var(--gray);
+            color: var(--monokai-fg);
             margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
@@ -713,7 +708,7 @@
             content: '▸';
             position: absolute;
             left: 0;
-            color: var(--vibrant-green);
+            color: var(--monokai-green);
             font-weight: bold;
         }
 
@@ -741,7 +736,7 @@
 
         /* Skills Section */
         .skills-section {
-            background: var(--dark-bg);
+            background: var(--monokai-dark);
         }
 
         .skills-grid {
@@ -751,67 +746,71 @@
         }
 
         .skill-card {
-            background: var(--dark-card);
+            background: var(--monokai-light);
             padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            border-radius: 8px;
+            border: 2px solid var(--monokai-purple);
             transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(174, 129, 255, 0.1);
         }
 
         .skill-card:hover {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(157, 78, 221, 0.05));
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.1);
+            background: var(--monokai-bg);
+            border-color: var(--monokai-cyan);
+            box-shadow: 0 0 30px rgba(102, 217, 239, 0.2);
+            transform: translateY(-5px);
         }
 
         .skill-card h3 {
-            font-size: 1.3rem;
-            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            color: var(--monokai-cyan);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            letter-spacing: 0.5px;
         }
 
         .skill-card h3::before {
             content: '';
             width: 8px;
             height: 8px;
-            background: var(--neon-cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            background: var(--monokai-cyan);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(102, 217, 239, 0.5);
         }
 
         .skill-card p {
-            color: var(--gray);
+            color: var(--monokai-fg);
             line-height: 1.7;
             font-size: 0.95rem;
         }
 
         .highlight {
-            color: var(--vibrant-green);
-            font-weight: 600;
+            color: var(--monokai-green);
+            font-weight: 700;
         }
 
         /* Contact Section */
         .contact-section {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(157, 78, 221, 0.1));
-            border-top: 2px solid var(--border);
-            border-bottom: 2px solid var(--border);
-            color: #E0E0E0;
+            background: var(--monokai-dark);
+            border-top: 3px solid var(--monokai-cyan);
+            border-bottom: 3px solid var(--monokai-cyan);
+            color: var(--monokai-fg);
             text-align: center;
             padding: 6rem 2rem;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 30px rgba(102, 217, 239, 0.1);
         }
 
         .contact-section h2 {
-            color: var(--neon-cyan);
+            color: var(--monokai-yellow);
         }
 
         .contact-description {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: var(--monokai-fg);
             margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
@@ -827,35 +826,36 @@
         }
 
         .contact-links a {
-            background: rgba(0, 217, 255, 0.1);
-            backdrop-filter: blur(10px);
-            color: var(--neon-cyan);
+            background: var(--monokai-light);
+            color: var(--monokai-cyan);
             padding: 1rem 2rem;
-            border-radius: 8px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
-            border: 1px solid rgba(0, 217, 255, 0.3);
+            font-weight: 700;
+            border: 2px solid var(--monokai-cyan);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            box-shadow: 0 0 15px rgba(102, 217, 239, 0.2);
+            letter-spacing: 0.5px;
         }
 
         .contact-links a:hover {
-            background: rgba(0, 217, 255, 0.2);
+            background: var(--monokai-cyan);
+            color: var(--monokai-dark);
             transform: translateY(-3px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+            box-shadow: 0 0 25px rgba(102, 217, 239, 0.4);
         }
 
         /* Footer */
         footer {
-            background: rgba(10, 14, 39, 0.8);
-            color: var(--gray);
+            background: var(--monokai-dark);
+            color: var(--monokai-gray);
             text-align: center;
             padding: 2rem;
             font-size: 0.9rem;
-            border-top: 1px solid var(--border);
+            border-top: 2px solid var(--monokai-light);
         }
 
         /* Responsive */
@@ -878,7 +878,7 @@
             }
 
             section h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .project-header h3 {
@@ -900,7 +900,7 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">KK</div>
+            <div class="logo">[ KK ]</div>
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
@@ -916,7 +916,7 @@
     <section class="hero" id="home">
         <div class="container">
             <h1>Karthik Kalletla</h1>
-            <div class="role">Software Engineer</div>
+            <div class="role">> Software Engineer</div>
             <p class="subtitle">Building production-grade AI systems. Transitioning to Forward Deployment Engineer, Agentic AI Engineer, and Full-Stack AI Developer through hands-on learning and real-world application building.</p>
             
             <div class="transition-note">
@@ -924,8 +924,8 @@
             </div>
 
             <div class="cta-buttons">
-                <a href="#about" class="btn btn-primary">Learn More</a>
-                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                <a href="#about" class="btn btn-primary">LEARN MORE</a>
+                <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
             </div>
         </div>
     </section>
@@ -941,34 +941,33 @@
                             Add your headshot as <code>headshot.jpg</code> in the docs folder<br>
                             (640x750px, professional attire)
                         </div>
-                        <!-- Uncomment and update path when you add your headshot:
-                        <img src="headshot.jpg" alt="Professional Headshot" class="headshot-img">
-                        -->
                     </div>
                 </div>
 
                 <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>
-                        I'm a backend engineer with <span class="highlight">4+ years</span> of hands-on experience building production systems at scale. 
-                        My focus is on <span class="highlight">reliability, scalability, and pragmatic engineering</span>.
-                    </p>
-                    <p>
-                        Recently, I've shifted my focus to <span class="highlight">AI systems and LLM deployment</span>. 
-                        I believe deploying AI systems reliably requires the same rigor as any production system: 
-                        circuit breakers, monitoring, caching strategies, and thoughtful error handling.
-                    </p>
-                    <p>
-                        My tech stack spans <span class="highlight">TypeScript, NestJS, Java Spring Boot, PostgreSQL, Kubernetes, Azure, 
-                        Claude API, semantic search, and distributed systems</span>. I approach every problem by understanding constraints first, 
-                        then designing for reliability and scale.
-                    </p>
+                    <h2>ABOUT ME</h2>
+                    <div class="about-text-box">
+                        <p>
+                            I'm a backend engineer with <span class="highlight">4+ years</span> of hands-on experience building production systems at scale. 
+                            My focus is on <span class="highlight">reliability, scalability, and pragmatic engineering</span>.
+                        </p>
+                        <p>
+                            Recently, I've shifted my focus to <span class="highlight">AI systems and LLM deployment</span>. 
+                            I believe deploying AI systems reliably requires the same rigor as any production system: 
+                            circuit breakers, monitoring, caching strategies, and thoughtful error handling.
+                        </p>
+                        <p>
+                            My tech stack spans <span class="highlight">TypeScript, NestJS, Java Spring Boot, PostgreSQL, Kubernetes, Azure, 
+                            Claude API, semantic search, and distributed systems</span>. I approach every problem by understanding constraints first, 
+                            then designing for reliability and scale.
+                        </p>
 
-                    <div class="fun-fact">
-                        <strong>🎮 Fun Fact:</strong> I'm obsessed with system design problems—whether it's optimizing cache hit rates, 
-                        designing circuit breaker state machines, or routing API requests intelligently to save costs. 
-                        I love the puzzle of making systems both reliable AND efficient. When I'm not coding, I'm thinking about 
-                        how distributed systems fail and how to design them to recover gracefully.
+                        <div class="fun-fact">
+                            <strong>🎮 Fun Fact:</strong> I'm obsessed with system design problems—whether it's optimizing cache hit rates, 
+                            designing circuit breaker state machines, or routing API requests intelligently to save costs. 
+                            I love the puzzle of making systems both reliable AND efficient. When I'm not coding, I'm thinking about 
+                            how distributed systems fail and how to design them to recover gracefully.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -978,7 +977,7 @@
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <h2>Featured Projects</h2>
+            <h2>FEATURED PROJECTS</h2>
             
             <div class="projects-grid">
                 <!-- Research Assistant -->
@@ -1003,16 +1002,18 @@
                             with production-grade reliability patterns built in from day one.
                         </p>
 
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-top: 2rem; margin-bottom: 1rem;">🏗️ Architecture (5-Step Pipeline)</h4>
-                        <p style="color: var(--gray); margin-bottom: 2rem; line-height: 1.8;">
-                            <strong style="color: var(--vibrant-green);">Step 1: Intent Detection</strong> - Keyword matching (instant) with Claude fallback for complex queries<br>
-                            <strong style="color: var(--vibrant-green);">Step 2: Semantic Search</strong> - 1024-dim TF-IDF embeddings with 24-hour intelligent caching<br>
-                            <strong style="color: var(--vibrant-green);">Step 3: Chunk Retrieval</strong> - Get top-5 most relevant note chunks<br>
-                            <strong style="color: var(--vibrant-green);">Step 4: RAG Synthesis</strong> - Pass full chunk text to Claude for evidence-based analysis<br>
-                            <strong style="color: var(--vibrant-green);">Step 5: Response Building</strong> - Chain-of-thought reasoning exposed to user
-                        </p>
+                        <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-cyan); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
+                            <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">🏗️ ARCHITECTURE (5-STEP PIPELINE)</h4>
+                            <p style="color: var(--monokai-fg); margin-bottom: 1rem; line-height: 1.8; font-size: 0.95rem;">
+                                <strong style="color: var(--monokai-green);">Step 1: Intent Detection</strong> - Keyword matching (instant) with Claude fallback for complex queries<br>
+                                <strong style="color: var(--monokai-green);">Step 2: Semantic Search</strong> - 1024-dim TF-IDF embeddings with 24-hour intelligent caching<br>
+                                <strong style="color: var(--monokai-green);">Step 3: Chunk Retrieval</strong> - Get top-5 most relevant note chunks<br>
+                                <strong style="color: var(--monokai-green);">Step 4: RAG Synthesis</strong> - Pass full chunk text to Claude for evidence-based analysis<br>
+                                <strong style="color: var(--monokai-green);">Step 5: Response Building</strong> - Chain-of-thought reasoning exposed to user
+                            </p>
+                        </div>
 
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-bottom: 1rem;">⚙️ Production Patterns (6 Core Systems)</h4>
+                        <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">⚙️ PRODUCTION PATTERNS (6 CORE SYSTEMS)</h4>
                         <div class="features-showcase">
                             <div class="feature-box">
                                 <h4>Circuit Breaker</h4>
@@ -1061,31 +1062,31 @@
                             </div>
                         </div>
 
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-top: 2rem; margin-bottom: 1rem;">📚 Design Decisions</h4>
-                        <p style="color: var(--gray); margin-bottom: 1rem; line-height: 1.8;">
-                            <strong style="color: var(--vibrant-green);">Why TF-IDF over Voyage AI?</strong> Free, fast, good enough for portfolio. Upgrade to Voyage in production after measuring accuracy.<br>
-                            <strong style="color: var(--vibrant-green);">Why Haiku + Opus?</strong> 75% cost savings while maintaining 88% quality. Route by complexity, not blindly.<br>
-                            <strong style="color: var(--vibrant-green);">Why Circuit Breaker?</strong> Claude API can fail. Fail fast, recover automatically, don't cascade failures.
-                        </p>
-
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-bottom: 1rem;">🚀 Future Enhancements</h4>
-                        <p style="color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8;">
-                            Week 3: RAG finalization + Chain of Thought exposure + Context Window Management + Few-Shot Learning<br>
-                            Week 4: LangChain refactor + Comprehensive tests + MLOps dashboard + Kubernetes deployment
-                        </p>
+                        <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-orange); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
+                            <h4 style="color: var(--monokai-orange); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">📚 DESIGN DECISIONS</h4>
+                            <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
+                                <strong style="color: var(--monokai-green);">Why TF-IDF over Voyage AI?</strong> Free, fast, good enough for portfolio. Upgrade to Voyage in production after measuring accuracy.
+                            </p>
+                            <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
+                                <strong style="color: var(--monokai-green);">Why Haiku + Opus?</strong> 75% cost savings while maintaining 88% quality. Route by complexity, not blindly.
+                            </p>
+                            <p style="color: var(--monokai-fg); line-height: 1.8; font-size: 0.95rem;">
+                                <strong style="color: var(--monokai-green);">Why Circuit Breaker?</strong> Claude API can fail. Fail fast, recover automatically, don't cascade failures.
+                            </p>
+                        </div>
 
                         <div class="project-links">
-                            <a href="https://github.com/karthikkalletla97/research-assistant" target="_blank">📂 View Code</a>
-                            <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/ARCHITECTURE.md" target="_blank">🏗️ Architecture</a>
-                            <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/DESIGN_DECISIONS.md" target="_blank">💡 Decisions</a>
+                            <a href="https://github.com/karthikkalletla97/research-assistant" target="_blank">📂 VIEW CODE</a>
+                            <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/ARCHITECTURE.md" target="_blank">🏗️ ARCHITECTURE</a>
+                            <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/DESIGN_DECISIONS.md" target="_blank">💡 DECISIONS</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Helm43 -->
                 <div class="project-card">
-                    <div class="project-header" style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(6, 255, 165, 0.15));">
-                        <h3>🏢 Helm43: Full-Stack Production Systems</h3>
+                    <div class="project-header" style="background: var(--monokai-dark); border-bottom-color: var(--monokai-yellow);">
+                        <h3 style="color: var(--monokai-yellow);">🏢 Helm43: Full-Stack Production Systems</h3>
                         <p>Backend, Frontend, Database, DevOps, Kubernetes for 500+ Field Users</p>
                     </div>
                     <div class="project-body">
@@ -1103,7 +1104,7 @@
                             DevOps pipelines, and Kubernetes deployments. Supporting multiple production applications serving 500+ field users with high reliability requirements.
                         </p>
 
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-top: 2rem; margin-bottom: 1rem;">💻 Backend Development</h4>
+                        <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">💻 BACKEND DEVELOPMENT</h4>
                         <div class="features-showcase">
                             <div class="feature-box">
                                 <h4>NestJS Microservices</h4>
@@ -1131,7 +1132,7 @@
                             </div>
                         </div>
 
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-top: 2rem; margin-bottom: 1rem;">🚀 DevOps & Infrastructure</h4>
+                        <h4 style="color: var(--monokai-yellow); font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; letter-spacing: 0.5px;">🚀 DEVOPS & INFRASTRUCTURE</h4>
                         <div class="features-showcase">
                             <div class="feature-box">
                                 <h4>Azure DevOps Pipelines</h4>
@@ -1159,42 +1160,29 @@
                             </div>
                         </div>
 
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-top: 2rem; margin-bottom: 1rem;">🎯 Frontend & UI</h4>
-                        <p style="color: var(--gray); margin-bottom: 2rem; line-height: 1.8;">
-                            Angular debugging (dropdowns, validation messages, no-result handling). Bootstrap table layouts, HTML bindings, pipe formatting, conditional display. 
-                            Power BI embedded reporting, CORS troubleshooting, iframe fallbacks. Collaborated with UI developers on role-based actions and update/delete flows.
-                        </p>
-
-                        <h4 style="color: var(--neon-cyan); font-weight: 700; margin-bottom: 1rem;">📊 Production Support</h4>
-                        <p style="color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8;">
-                            Root-cause analysis across backend, frontend, SQL, DevOps, Kubernetes, authentication, reporting. Investigated incorrect report values, duplicate records, 
-                            missing relationships, failed validations, pipeline failures, certificate issues, CORS failures, SSO routing issues. 
-                            Professional communication with leads, UI developers, DevOps teams, business users, and clients.
-                        </p>
-
-                        <div class="metrics" style="background: rgba(157, 78, 221, 0.05); border: 1px solid rgba(157, 78, 221, 0.2);">
-                            <div class="metrics-grid">
-                                <div class="metric">
-                                    <div class="metric-value" style="color: var(--neon-purple);">15+</div>
-                                    <div class="metric-label">Microservices</div>
+                        <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-yellow); padding: 1.5rem; border-radius: 6px; margin-top: 2rem; margin-bottom: 1rem;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
+                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
+                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">15+</div>
+                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Microservices</div>
                                 </div>
-                                <div class="metric">
-                                    <div class="metric-value" style="color: var(--vibrant-green);">500+</div>
-                                    <div class="metric-label">Field Users</div>
+                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
+                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">500+</div>
+                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Field Users</div>
                                 </div>
-                                <div class="metric">
-                                    <div class="metric-value" style="color: var(--accent-gold);">6+</div>
-                                    <div class="metric-label">Core Technologies</div>
+                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
+                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">6+</div>
+                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Core Tech</div>
                                 </div>
-                                <div class="metric">
-                                    <div class="metric-value" style="color: var(--neon-cyan);">24/7</div>
-                                    <div class="metric-label">Production Support</div>
+                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
+                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">24/7</div>
+                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Support</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="project-links">
-                            <a href="#experience" style="background: linear-gradient(135deg, var(--neon-purple), var(--vibrant-green));">See Full Experience Timeline</a>
+                            <a href="#experience" style="background: var(--monokai-dark); border-color: var(--monokai-yellow); color: var(--monokai-yellow);">👇 SEE FULL EXPERIENCE</a>
                         </div>
                     </div>
                 </div>
@@ -1205,7 +1193,7 @@
     <!-- Experience Timeline -->
     <section class="experience-section" id="experience">
         <div class="container">
-            <h2>Experience Journey</h2>
+            <h2>EXPERIENCE JOURNEY</h2>
             
             <div class="timeline">
                 <div class="timeline-item">
@@ -1224,10 +1212,6 @@
                             <li>Debugged Kubernetes deployments on AKS, including pod logs, environment configuration, rollout status, ingress setup, and namespace management</li>
                             <li>Configured RabbitMQ messaging in AKS with exchanges, queues, vhosts, and bindings. Debugged subscriber behavior and durable settings</li>
                             <li>Implemented SAML SSO flows with NestJS backend callbacks, SAML response validation, JWT generation, and Angular frontend redirect handling</li>
-                            <li>Supported Power BI embedded reporting with Angular integration and backend embed token generation. Resolved CORS and iframe fallback issues</li>
-                            <li>Debugged Angular UI issues including dropdown search behavior, validation messages, form update triggers, and UI/backend integration</li>
-                            <li>Performed root-cause analysis for production issues spanning application code, SQL logic, pipelines, Kubernetes, authentication, and client reporting</li>
-                            <li>Communicated with business users, UI developers, DevOps teams, and clients to explain technical issues and deliver fixes aligned with business requirements</li>
                         </ul>
                     </div>
                 </div>
@@ -1279,7 +1263,7 @@
     <!-- Skills Section -->
     <section id="skills">
         <div class="container">
-            <h2>Technical Skills</h2>
+            <h2>TECHNICAL SKILLS</h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <h3>AI/LLM Systems</h3>
@@ -1312,15 +1296,15 @@
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <h2>Let's Build Something</h2>
+            <h2>LET'S BUILD SOMETHING</h2>
             <p class="contact-description">
                 Interested in deploying AI systems reliably? Or discussing production systems design? Let's talk.
             </p>
             <div class="contact-links">
-                <a href="mailto:karthikkalletla009@gmail.com">📧 Email</a>
-                <a href="https://www.linkedin.com/in/kk09/" target="_blank">💼 LinkedIn</a>
-                <a href="https://github.com/karthikkalletla97/" target="_blank">🐙 GitHub</a>
-                <a href="tel:+13139136503">📱 Call</a>
+                <a href="mailto:karthikkalletla009@gmail.com">📧 EMAIL</a>
+                <a href="https://www.linkedin.com/in/kk09/" target="_blank">💼 LINKEDIN</a>
+                <a href="https://github.com/karthikkalletla97/" target="_blank">🐙 GITHUB</a>
+                <a href="tel:+13139136503">📱 CALL</a>
             </div>
         </div>
     </section>
