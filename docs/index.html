@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthik Kalletla - Forward Deployment Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3B82F6;
+            --secondary: #10B981;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+            --accent: #F59E0B;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: slideUp 0.6s ease-out 0.2s both;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideUp 0.6s ease-out 0.4s both;
+        }
+
+        .hero .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        /* Featured Project */
+        .project {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+        }
+
+        .project h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project .badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content {
+            margin: 1.5rem 0;
+        }
+
+        .project-content p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--accent);
+        }
+
+        .feature h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .links {
+            margin-top: 2rem;
+        }
+
+        .links a {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-right: 1rem;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+
+        .links a:hover {
+            background: var(--secondary);
+        }
+
+        /* Experience */
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .experience-item h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .period {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            color: var(--gray);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-item li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-category p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .contact-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav .logo {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .project {
+                padding: 1.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Utilities */
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .text-secondary {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Karthik Kalletla</div>
+            <div>
+                <a href="#about">About</a>
+                <a href="#research-assistant">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Forward Deployment Engineer</h1>
+            <p class="subtitle">Building AI systems that scale, deploy reliably, and ship with confidence</p>
+            <a href="#research-assistant" class="cta">See My Work</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 800px; margin: 0 auto;">
+                <p style="color: var(--gray); line-height: 1.8; margin-bottom: 1rem;">
+                    I'm a backend engineer with <span class="highlight">4+ years</span> shipping production systems. 
+                    Recently, I've focused on deploying <span class="highlight">AI systems reliably at scale</span>.
+                </p>
+                <p style="color: var(--gray); line-height: 1.8; margin-bottom: 1rem;">
+                    My approach: <span class="highlight">understand the constraints</span>, 
+                    <span class="highlight">design for reliability</span>, 
+                    <span class="highlight">measure everything</span>.
+                </p>
+                <p style="color: var(--gray); line-height: 1.8;">
+                    I work with <span class="highlight">TypeScript, NestJS, Claude API, Kubernetes, 
+                    distributed systems, and production monitoring</span>. I believe deploying AI systems 
+                    isn't magic—it's engineering.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project: Research Assistant -->
+    <section id="research-assistant">
+        <div class="container">
+            <h2>Research Assistant: AI Agent at Scale</h2>
+            <div class="project">
+                <h3>🤖 Intelligent Agent with Production Reliability</h3>
+                <p>A full-stack AI agent system demonstrating how to deploy LLMs reliably at scale. 
+                Not just working code—but production-grade architecture thinking.</p>
+                
+                <div class="features-grid">
+                    <div class="feature">
+                        <h4>Claude API Integration</h4>
+                        <p>Intelligent model routing: Haiku for cost, Opus for quality. Route 95% of queries to Haiku, 5% to Opus.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Semantic Search + RAG</h4>
+                        <p>Retrieve actual note chunks, pass to Claude for evidence-based answers with full context.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Circuit Breaker Pattern</h4>
+                        <p>CLOSED → OPEN → HALF_OPEN. Prevents cascading failures. Fails fast, recovers automatically.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Multi-Layer Caching</h4>
+                        <p>Hash-based (instant) + Semantic (similar queries). Combined 25% cache hit rate eliminates API calls.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Comprehensive Monitoring</h4>
+                        <p>Latency (p50, p99), error rates, cost per query, cache hit rates. Real-time visibility.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Designed for Scale</h4>
+                        <p>Handles 100K+ documents. Context window management prevents resource explosion.</p>
+                    </div>
+                </div>
+
+                <div class="project-content">
+                    <h4 style="color: var(--dark); margin-top: 2rem;">Architecture Layers</h4>
+                    <p><span class="highlight">Agent Orchestration:</span> 5-step pipeline (intent → search → extract → synthesize → recommend)</p>
+                    <p><span class="highlight">Production Patterns:</span> Circuit breaker, retry logic, caching, error handling</p>
+                    <p><span class="highlight">Infrastructure:</span> TypeScript/NestJS, PostgreSQL, Claude API, monitoring</p>
+                </div>
+
+                <div class="project-content">
+                    <h4 style="color: var(--dark);">Key Metrics</h4>
+                    <p>⚡ <span class="highlight">200-400ms latency</span> | 💰 <span class="highlight">$0.0006 cost/query</span> | 
+                    ✅ <span class="highlight">25% cache hit rate</span> | 🎯 <span class="highlight">85%+ accuracy</span></p>
+                </div>
+
+                <div class="links">
+                    <a href="https://github.com/karthikkalletla97/research-assistant" target="_blank">📂 View Code</a>
+                    <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/ARCHITECTURE.md" target="_blank">🏗️ Architecture</a>
+                    <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/DESIGN_DECISIONS.md" target="_blank">💡 Design Decisions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <h3>Helm43, LLC - Software Engineer</h3>
+                <div class="company">Plymouth, MI | Mar 2024 – Present</div>
+                <div class="period">Production systems for 500+ field users</div>
+                <ul>
+                    <li>Migrated 15+ microservices from GKE to Azure AKS, reducing deployment failures</li>
+                    <li>Built and maintained Azure DevOps CI/CD pipelines for containerized applications</li>
+                    <li>Designed distributed microservices with circuit breaker patterns for fault tolerance</li>
+                    <li>Refactored legacy Java services into NestJS microservices, improving reliability</li>
+                    <li>Led production monitoring and incident response for mission-critical systems</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Wayne State University - Student Research Assistant</h3>
+                <div class="company">Detroit, MI | Jan 2023 – Mar 2024</div>
+                <div class="period">Full-stack platform development</div>
+                <ul>
+                    <li>Developed PPS Swap marketplace (Java Spring Boot + React) with 1000+ users</li>
+                    <li>Implemented microservices architecture with 25% response time improvement</li>
+                    <li>Built JWT-based authentication with role-based authorization</li>
+                    <li>Deployed on AWS with infrastructure-as-code patterns</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Meritor, Inc - Software Engineer Intern</h3>
+                <div class="company">Troy, MI | Jul 2022 – Dec 2022</div>
+                <div class="period">System modernization and infrastructure</div>
+                <ul>
+                    <li>Migrated legacy monolith to Spring Boot microservices (13% response time improvement)</li>
+                    <li>Designed and optimized REST APIs for scalability</li>
+                    <li>Deployed on AWS Elastic Beanstalk with infrastructure optimization</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Sub-K Impact Solutions Ltd. - Software Engineer</h3>
+                <div class="company">Hyderabad, India | May 2019 – Jul 2021</div>
+                <div class="period">Fintech platform serving 4M+ transactions</div>
+                <ul>
+                    <li>Built secure banking application (MVC) processing $4M+ in transactions</li>
+                    <li>Developed RESTful APIs in Java Spring Boot with 40% performance optimization</li>
+                    <li>Applied Agile + TDD + CI/CD best practices</li>
+                    <li>Deployed AWS solutions (Elastic Beanstalk, Lambdas, S3)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>AI/LLM Systems</h3>
+                    <p><span class="highlight">Claude API</span>, semantic search, embeddings, retrieval-augmented generation (RAG), 
+                    agent orchestration, prompt engineering, model selection strategies, chain-of-thought reasoning</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & Frameworks</h3>
+                    <p><span class="highlight">TypeScript, NestJS</span>, Java Spring Boot, microservices architecture, 
+                    RESTful APIs, Type ORM, database design</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Infrastructure & DevOps</h3>
+                    <p><span class="highlight">Kubernetes (AKS), Docker</span>, Azure DevOps CI/CD, Helm, AWS 
+                    (Elastic Beanstalk, EC2, S3), zero-downtime deployments</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Production Patterns</h3>
+                    <p><span class="highlight">Circuit breaker, retry logic</span>, caching strategies (hash + semantic), 
+                    distributed systems, service isolation, fault tolerance, graceful degradation</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Observability & Reliability</h3>
+                    <p>Latency tracking, error rate monitoring, cost analysis, cache performance metrics, 
+                    production alerting, incident response</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <p><span class="highlight">PostgreSQL</span>, MySQL, Type ORM, MongoDB, query optimization, 
+                    schema design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Talk</h2>
+            <p>Interested in deploying AI systems? Let's work together.</p>
+            <div class="contact-links">
+                <a href="mailto:karthikkalletla009@gmail.com">📧 Email</a>
+                <a href="https://www.linkedin.com/in/kk09/" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/karthikkalletla97/" target="_blank">🐙 GitHub</a>
+                <a href="tel:3139136503">📱 Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Karthik Kalletla. Deploying AI systems reliably at scale.</p>
+    </footer>
+</body>
+</html>
