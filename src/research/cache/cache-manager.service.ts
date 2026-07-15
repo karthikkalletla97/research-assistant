@@ -67,6 +67,16 @@ export class CacheManagerService {
     this.semanticCache.clear();
   }
 
+  delete(key: string, cacheType: 'hash' | 'semantic' = 'hash'): void {
+    if (cacheType === 'hash') {
+      this.hashCache.delete(key);
+      console.log(`🗑️  Deleted from hash cache: ${key}`);
+    } else if (cacheType === 'semantic') {
+      this.semanticCache.delete(key);
+      console.log(`🗑️  Deleted from semantic cache: ${key}`);
+    }
+  }
+
   /**
    * Get cache statistics
    */

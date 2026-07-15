@@ -127,6 +127,14 @@ export class SemanticCacheService {
     console.log('Semantic cache cleared');
   }
 
+  delete(key: string): void {
+    const before = this.cache.length;
+    this.cache = this.cache.filter((entry) => entry.noteText !== key);
+    if (this.cache.length < before) {
+      console.log(`🗑️  Deleted from semantic cache: ${key}`);
+    }
+  }
+
   /**
    * Set similarity threshold
    * Higher = more strict matching

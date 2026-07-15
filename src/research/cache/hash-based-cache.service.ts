@@ -114,7 +114,10 @@ export class HashBasedCacheService {
     this.cache.clear();
     console.log('Cache cleared');
   }
-
+  delete(key: string): void {
+    this.cache.delete(key);
+    console.log(`🗑️  Deleted from hash cache: ${key}`);
+  }
   /**
    * Get cache stats (for monitoring)
    */

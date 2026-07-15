@@ -5,6 +5,8 @@ import { ModelSelectorService } from '../model-selector/model-selector.service';
 import { CacheManagerService } from '../cache/cache-manager.service';
 import { CircuitBreakerService } from 'src/llm/circuit-breaker.service';
 import { MonitoringService } from 'src/monitoring/monitoring.service';
+import { SemanticSearchService } from '../search/semantic-search.service';
+import { RagService } from '../rag/rag.service';
 
 @Injectable()
 export class ResearchService {
@@ -14,11 +16,47 @@ export class ResearchService {
     private cacheManager: CacheManagerService,
     private circuitBreaker: CircuitBreakerService,
     private monitoringService: MonitoringService,
+    private semanticSearchService: SemanticSearchService,
+    private ragService: RagService,
   ) {}
+
+  /**
+   * Extract facts AND store in RAG (move from controller)
+   */
+  async extractFactsAndStore(
+    noteText: string,
+    userId: string = 'default_user',
+  ): Promise<{
+    facts: ExtractedFacts;
+    noteId: number;
+    chunkCount: number;
+  }> {
+    console.log('📝 Extracting facts and storing in RAG...');
+
+    // Step 1: Extract facts
+    const facts = await this.extractFacts(noteText);
+
+    // Step 2: Store in RAG database with chunks
+    const note = await this.ragService.storeNote(noteText, userId, {
+      summary: facts.summary,
+      topics: facts.topics,
+      sentiment: facts.sentiment,
+    });
+
+    // STEP 3: ADD THIS LINE - Index in semantic search
+    await this.semanticSearchService.addNote(noteText, facts, note.id);
+
+    return {
+      facts,
+      noteId: note.id,
+      chunkCount: note.chunks?.length || 0,
+    };
+  }
 
   async extractFacts(noteText: string): Promise<ExtractedFacts> {
     const startTime = Date.now();
-    // TRY CACHE FIRST (using hash-based strategy)
+
+    // TRY CACHE FIRST
     const cachedResult = this.cacheManager.get(noteText, 'hash');
     if (cachedResult) {
       console.log('✅ Returning cached result');
@@ -30,14 +68,13 @@ export class ResearchService {
     // CHECK CIRCUIT BREAKER
     if (!this.circuitBreaker.canAttempt()) {
       console.log('⚠️ Circuit breaker is OPEN, returning error');
-      // Return degraded response
       return {
         name: undefined,
         summary:
           'Service temporarily unavailable. Data from cache unavailable.',
         topics: [],
         sentiment: 'neutral',
-        confidence: 0, // Low confidence to indicate degraded
+        confidence: 0,
       };
     }
 
@@ -47,33 +84,29 @@ export class ResearchService {
     let retries = 0;
     while (retries < 3) {
       try {
-        // SELECT MODEL BASED ON RISK
         const debugInfo = this.modelSelector.getDebugInfo(noteText);
         console.log('Model selection debug:', debugInfo);
 
         const response = await this.llmService.callClaude(
           [{ role: 'user', content: prompt }],
-          0, // temperature = 0 for consistency
-          500, // maxTokens
-          model, // PASS THE SELECTED MODEL
+          0,
+          500,
+          model,
         );
 
         const latencyMs = Date.now() - startTime;
         const costUSD =
           response.usage.input_tokens * 0.000003 +
           response.usage.output_tokens * 0.000015;
-        // RECORD SUCCESS IN CIRCUIT BREAKER
+
         this.monitoringService.recordApiCall(model, true, latencyMs, costUSD);
         this.circuitBreaker.recordSuccess();
 
-        // Clean the response: extract JSON from markdown blocks if needed
+        // Clean and parse response
         const cleanedText = this.extractJsonFromResponse(response.text);
-
-        // Log for debugging
         console.log('Raw Claude response:', response.text);
         console.log('Cleaned text:', cleanedText);
 
-        // Parse and validate JSON
         const parsed = JSON.parse(cleanedText) as unknown;
 
         if (!this.isExtractedFacts(parsed)) {
@@ -87,8 +120,9 @@ export class ResearchService {
           sentiment: parsed.sentiment || 'neutral',
           confidence: parsed.confidence || 0.8,
         };
-        // Store in cache (both hash and semantic for better future hits)
-        this.cacheManager.set(noteText, result, 'both', 1440); // 1 day TTL
+
+        // Store in cache only (indexing happens in extractFactsAndStore)
+        this.cacheManager.set(noteText, result, 'both', 1440);
 
         return result;
       } catch (error: unknown) {
@@ -96,24 +130,16 @@ export class ResearchService {
         const errorMessage =
           error instanceof Error ? error.message : String(error);
         retries++;
+
         if (retries >= 3) {
           throw new Error(
             `Failed to extract facts after 3 retries: ${errorMessage}`,
           );
         }
+
         console.warn(`Retry ${retries}: ${errorMessage}`);
-        // RECORD FAILURE IN CIRCUIT BREAKER
         this.monitoringService.recordApiCall(model, false, latencyMs, 0);
         this.circuitBreaker.recordFailure();
-        console.error('Failed to extract facts:', error);
-
-        return {
-          name: undefined,
-          summary: 'Error extracting facts:' + errorMessage,
-          topics: [],
-          sentiment: 'neutral',
-          confidence: 0, // Low confidence to indicate error
-        };
       }
     }
 
