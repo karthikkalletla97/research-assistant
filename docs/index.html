@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karthik Kalletla - Software Engineer & AI Systems Builder</title>
+    <title>Karthik Kalletla - Full-Stack & AI/LLM Engineer</title>
     <style>
         * {
             margin: 0;
@@ -836,11 +836,11 @@
     <section class="hero" id="home">
         <div class="container">
             <h1>Karthik Kalletla</h1>
-            <div class="role">> Software Engineer</div>
-            <p class="subtitle">Building production-grade AI systems. Transitioning to Forward Deployment Engineer, Agentic AI Engineer, and Full-Stack AI Developer through hands-on learning and real-world application building.</p>
+            <div class="role">> Full-Stack & AI/LLM Engineer</div>
+            <p class="subtitle">Software engineer with 4+ years building production full-stack systems, now focused on making AI reliable in production. Backend-first across NestJS, Java/Spring Boot, and Kubernetes/AKS, with Angular/React on the front end — plus LLM/RAG systems with the Claude API.</p>
             
             <div class="transition-note">
-                <strong>🚀 In Transition:</strong> My core expertise is backend systems (4+ years at Helm43). I'm actively learning and building AI/LLM applications to transition into Forward Deployment Engineer and Agentic AI roles. My Research Assistant project demonstrates this journey—combining infrastructure reliability patterns with Claude API, semantic search, and production-grade AI system design.
+                <strong>🚀 What I do:</strong> I own client-facing production systems end to end — from on-site client requirements through design, deployment, and keeping them reliable under deadline pressure. I bring the same rigor to AI: my note-chat project combines a Claude-powered RAG pipeline with production reliability patterns (circuit breaker, retry), an evaluation harness, and cost/latency observability. Open to Full-Stack, AI/LLM, and Forward-Deployed Engineer roles.
             </div>
 
             <div class="cta-buttons">
@@ -866,18 +866,18 @@
                     <h2>ABOUT ME</h2>
                     <div class="about-text-box">
                         <p>
-                            I'm a backend engineer with <span class="highlight">4+ years</span> of hands-on experience building production systems at scale. 
-                            My focus is on <span class="highlight">reliability, scalability, and pragmatic engineering</span>.
+                            I'm a software engineer with <span class="highlight">4+ years</span> building and running production full-stack systems — 
+                            backend-first, with a focus on <span class="highlight">reliability and pragmatic engineering</span>.
                         </p>
                         <p>
-                            Recently, I've shifted my focus to <span class="highlight">AI systems and LLM deployment</span>. 
-                            I believe deploying AI systems reliably requires the same rigor as any production system: 
-                            circuit breakers, monitoring, caching strategies, and thoughtful error handling.
+                            More recently I've focused on <span class="highlight">AI systems and LLM deployment</span>. 
+                            I believe deploying AI reliably takes the same rigor as any production system: 
+                            circuit breakers, monitoring, caching, and thoughtful error handling.
                         </p>
                         <p>
-                            My tech stack spans <span class="highlight">TypeScript, NestJS, Java Spring Boot, PostgreSQL, Kubernetes, Azure, 
-                            Claude API, semantic search, and distributed systems</span>. I approach every problem by understanding constraints first, 
-                            then designing for reliability and scale.
+                            My tech stack spans <span class="highlight">TypeScript, NestJS, Java Spring Boot, Angular, PostgreSQL, Kubernetes, Azure, 
+                            the Claude API, RAG, and distributed systems</span>. I approach every problem by understanding constraints first, 
+                            then designing for reliability.
                         </p>
 
                         <div class="fun-fact">
@@ -898,36 +898,37 @@
             <h2>FEATURED PROJECTS</h2>
             
             <div class="projects-grid">
-                <!-- Research Assistant -->
+                <!-- note-chat -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>🤖 Research Assistant</h3>
-                        <p>AI Agent with Semantic Search & Retrieval-Augmented Generation</p>
+                        <h3>🤖 note-chat</h3>
+                        <p>Claude-Powered RAG Assistant with Production Reliability Patterns</p>
                     </div>
                     <div class="project-body">
                         <div class="badges">
                             <span class="badge">Claude API</span>
-                            <span class="badge">Semantic Search</span>
                             <span class="badge">RAG</span>
+                            <span class="badge">LangChain / LangGraph</span>
                             <span class="badge">NestJS</span>
+                            <span class="badge">PostgreSQL</span>
                             <span class="badge">Production Patterns</span>
-                            <span class="badge">Distributed Systems</span>
                         </div>
 
                         <p class="project-description">
-                            A full-stack AI agent system demonstrating how to deploy LLMs reliably at scale. 
-                            It answers questions about your notes through intelligent semantic search and retrieval-augmented generation (RAG), 
-                            with production-grade reliability patterns built in from day one.
+                            A Claude-powered RAG assistant that answers natural-language questions over CRM notes. 
+                            It combines in-memory hybrid retrieval with a LangChain/LangGraph pipeline and production reliability 
+                            patterns — circuit breaker, retry, multi-level caching, and observability — built in from the start. 
+                            (Portfolio project.)
                         </p>
 
                         <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-cyan); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
-                            <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">🏗️ ARCHITECTURE (5-STEP PIPELINE)</h4>
+                            <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">🏗️ ARCHITECTURE (LangGraph PIPELINE)</h4>
                             <p style="color: var(--monokai-fg); margin-bottom: 1rem; line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Step 1: Intent Detection</strong> - Keyword matching (instant) with Claude fallback for complex queries<br>
-                                <strong style="color: var(--monokai-green);">Step 2: Semantic Search</strong> - 1024-dim TF-IDF embeddings with 24-hour intelligent caching<br>
-                                <strong style="color: var(--monokai-green);">Step 3: Chunk Retrieval</strong> - Get top-5 most relevant note chunks<br>
-                                <strong style="color: var(--monokai-green);">Step 4: RAG Synthesis</strong> - Pass full chunk text to Claude for evidence-based analysis<br>
-                                <strong style="color: var(--monokai-green);">Step 5: Response Building</strong> - Chain-of-thought reasoning exposed to user
+                                <strong style="color: var(--monokai-green);">Classify</strong> - Chain-of-thought complexity check routes simple vs. complex queries<br>
+                                <strong style="color: var(--monokai-green);">Retrieve</strong> - In-memory hybrid search: BM25 + Jaccard token overlap + metadata boosts, fused 50/30/20<br>
+                                <strong style="color: var(--monokai-green);">Select</strong> - Importance-weighted chunk selection within a 5K-token budget<br>
+                                <strong style="color: var(--monokai-green);">Generate</strong> - Pass selected chunks to Claude for evidence-based answers<br>
+                                <strong style="color: var(--monokai-green);">Orchestration</strong> - LangChain/LangGraph state machine with conditional routing between steps
                             </p>
                         </div>
 
@@ -942,40 +943,36 @@
                                 <p>Exponential backoff (100ms → 200ms → 400ms). Handles transient failures gracefully. Max 3 retries.</p>
                             </div>
                             <div class="feature-box">
-                                <h4>Multi-Layer Caching</h4>
-                                <p>Hash-based (instant, 15% hit) + Semantic (similar queries, 10% hit). Combined 25% cache elimination.</p>
+                                <h4>Multi-Level Caching</h4>
+                                <p>Exact-match (hash) and near-duplicate extraction caches plus a response cache, so repeat or near-identical inputs skip redundant Claude calls.</p>
                             </div>
                             <div class="feature-box">
                                 <h4>Model Routing</h4>
-                                <p>Simple queries → Claude Haiku (cheap, fast). Complex → Opus (quality). Route 95% to Haiku.</p>
+                                <p>Simple queries → Claude Haiku (cheap, fast). Complex → Opus (quality). Routed by query complexity to control cost.</p>
                             </div>
                             <div class="feature-box">
-                                <h4>Comprehensive Monitoring</h4>
-                                <p>Latency (p50, p99), error rates, cost per query, cache hit rates. Real-time dashboards & alerting.</p>
+                                <h4>Observability</h4>
+                                <p>Metrics endpoints tracking latency, cost-per-call, cache-hit rate, candidates retrieved, and context utilization.</p>
                             </div>
                             <div class="feature-box">
                                 <h4>Context Management</h4>
-                                <p>Intelligent chunking (500 tokens/chunk with overlap). Handles 100K+ documents without breaking.</p>
+                                <p>Chunking (~500 tokens with ~50-token overlap) and importance-weighted selection (0.7 × relevance + 0.3 × recency) within a 5K-token budget.</p>
                             </div>
                         </div>
 
                         <div class="metrics">
                             <div class="metrics-grid">
                                 <div class="metric">
-                                    <div class="metric-value">200-400ms</div>
-                                    <div class="metric-label">Latency (Haiku)</div>
+                                    <div class="metric-value">88%</div>
+                                    <div class="metric-label">Accuracy (50-query eval set)</div>
                                 </div>
                                 <div class="metric">
-                                    <div class="metric-value">$0.0006</div>
-                                    <div class="metric-label">Cost/Query</div>
+                                    <div class="metric-value">50/30/20</div>
+                                    <div class="metric-label">BM25 / Jaccard / Metadata</div>
                                 </div>
                                 <div class="metric">
-                                    <div class="metric-value">25%</div>
-                                    <div class="metric-label">Cache Hit Rate</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">85%+</div>
-                                    <div class="metric-label">Accuracy</div>
+                                    <div class="metric-value">5K</div>
+                                    <div class="metric-label">Token Context Budget</div>
                                 </div>
                             </div>
                         </div>
@@ -983,13 +980,16 @@
                         <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-orange); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
                             <h4 style="color: var(--monokai-orange); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">📚 DESIGN DECISIONS</h4>
                             <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Why TF-IDF over Voyage AI?</strong> Free, fast, good enough for portfolio. Upgrade to Voyage in production after measuring accuracy.
+                                <strong style="color: var(--monokai-green);">Why hybrid lexical retrieval?</strong> An early TF-IDF approach scored relevant notes near zero on matching queries. Rebuilt as BM25 + Jaccard + metadata fusion, which fixed retrieval on the eval set.
                             </p>
                             <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Why Haiku + Opus?</strong> 75% cost savings while maintaining 88% quality. Route by complexity, not blindly.
+                                <strong style="color: var(--monokai-green);">Why Haiku + Opus?</strong> Route by query complexity — cheap/fast model for simple lookups, stronger model for complex reasoning — instead of paying for the big model on every call.
+                            </p>
+                            <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
+                                <strong style="color: var(--monokai-green);">Why Circuit Breaker?</strong> The Claude API can fail. Fail fast, recover automatically, don't cascade failures.
                             </p>
                             <p style="color: var(--monokai-fg); line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Why Circuit Breaker?</strong> Claude API can fail. Fail fast, recover automatically, don't cascade failures.
+                                <strong style="color: var(--monokai-green);">Next step:</strong> Dense embeddings + pgvector (and cross-encoder reranking) to add true semantic retrieval at scale.
                             </p>
                         </div>
 
@@ -1140,10 +1140,10 @@
                         <div class="company">Student Research Assistant</div>
                         <div class="period">Jan 2023 – Mar 2024 | Detroit, MI</div>
                         <ul>
-                            <li>Developed PPS Swap marketplace (Java Spring Boot + React) achieving 1000+ unique visits</li>
-                            <li>Implemented microservices architecture with 25% response time improvement</li>
-                            <li>Built JWT-based authentication with role-based authorization</li>
-                            <li>Deployed applications on AWS (S3, EC2) with infrastructure optimization</li>
+                            <li>Built PPS Swap, a full-stack web app (Java/Spring, microservices) with a ~25% response-time improvement after refactor</li>
+                            <li>Built Blog Post, a Reddit-style forum (Angular/TypeScript + Spring Boot, normalized MySQL schema from ER diagram)</li>
+                            <li>Implemented JWT authentication with role-based authorization and single sign-on</li>
+                            <li>Deployed applications on AWS (S3, EC2, Elastic Beanstalk)</li>
                         </ul>
                     </div>
                 </div>
@@ -1167,10 +1167,10 @@
                         <div class="company">Software Engineer</div>
                         <div class="period">May 2019 – Jul 2021 | Hyderabad, India</div>
                         <ul>
-                            <li>Built secure banking application processing $4M+ in transactions for 500+ agents</li>
-                            <li>Developed RESTful APIs and optimized stored procedures with 40% performance improvement</li>
-                            <li>Applied Agile + TDD + CI/CD best practices across team</li>
-                            <li>Deployed AWS solutions (Elastic Beanstalk, Lambdas, S3)</li>
+                            <li>Built a secure banking application (MVC) that raised $4M+ and grew daily transactions 18%</li>
+                            <li>Developed RESTful APIs and optimized T-SQL stored procedures, cutting dashboard load time 40%</li>
+                            <li>Applied Agile, TDD, and CI/CD best practices across the team</li>
+                            <li>Deployed AWS solutions (Elastic Beanstalk, Lambda, S3)</li>
                         </ul>
                     </div>
                 </div>
@@ -1185,7 +1185,7 @@
             <div class="skills-grid">
                 <div class="skill-card">
                     <h3>AI/LLM Systems</h3>
-                    <p><span class="highlight">Claude API</span>, semantic search, embeddings, retrieval-augmented generation (RAG), agent orchestration, prompt engineering, model selection strategies, chain-of-thought reasoning</p>
+                    <p><span class="highlight">Claude API</span>, retrieval-augmented generation (RAG), LangChain / LangGraph, hybrid lexical retrieval (BM25 + token overlap), model routing, chain-of-thought reasoning, evaluation harnesses</p>
                 </div>
                 <div class="skill-card">
                     <h3>Backend & Frameworks</h3>
@@ -1197,7 +1197,7 @@
                 </div>
                 <div class="skill-card">
                     <h3>Production Patterns</h3>
-                    <p><span class="highlight">Circuit breaker, retry logic</span>, caching strategies (hash + semantic), distributed systems, service isolation, fault tolerance</p>
+                    <p><span class="highlight">Circuit breaker, retry logic</span>, multi-level caching (exact-match + near-duplicate), distributed systems, service isolation, fault tolerance</p>
                 </div>
                 <div class="skill-card">
                     <h3>Databases & Data</h3>
@@ -1229,7 +1229,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Karthik Kalletla. Software Engineer building AI systems.</p>
+        <p>&copy; 2026 Karthik Kalletla. Full-Stack &amp; AI/LLM Engineer.</p>
     </footer>
 
     <script>
