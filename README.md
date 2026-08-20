@@ -1,4 +1,4 @@
-# Research Assistant for CRM
+# Note Chat for CRM
 
 AI-powered fact extraction from customer notes using Claude.
 
@@ -15,6 +15,7 @@ curl -X POST http://localhost:3000/research/extract-facts \
 ```
 
 **Response:**
+
 ```json
 {
   "name": "Acme Corp",

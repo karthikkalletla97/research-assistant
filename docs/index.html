@@ -1,1267 +1,1770 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Karthik Kalletla - Full-Stack & AI/LLM Engineer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --monokai-bg: #272822;
-            --monokai-fg: #F8F8F2;
-            --monokai-red: #F92672;
-            --monokai-orange: #FD971F;
-            --monokai-yellow: #E6DB74;
-            --monokai-green: #A6E22E;
-            --monokai-cyan: #66D9EF;
-            --monokai-purple: #AE81FF;
-            --monokai-gray: #75715E;
-            --monokai-dark: #1E1F1C;
-            --monokai-light: #3E3D32;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Cascadia Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            line-height: 1.6;
-            color: var(--monokai-fg);
-            background: var(--monokai-bg);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: 
-                url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="network" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><line x1="30" y1="30" x2="170" y2="30" stroke="rgba(102,217,239,0.1)" stroke-width="1"/><line x1="30" y1="100" x2="170" y2="100" stroke="rgba(102,217,239,0.08)" stroke-width="1"/><line x1="30" y1="170" x2="170" y2="170" stroke="rgba(102,217,239,0.1)" stroke-width="1"/><line x1="30" y1="30" x2="30" y2="170" stroke="rgba(174,129,255,0.1)" stroke-width="1"/><line x1="100" y1="30" x2="100" y2="170" stroke="rgba(174,129,255,0.08)" stroke-width="1"/><line x1="170" y1="30" x2="170" y2="170" stroke="rgba(174,129,255,0.1)" stroke-width="1"/><line x1="50" y1="50" x2="150" y2="150" stroke="rgba(230,219,116,0.05)" stroke-width="1"/><line x1="150" y1="50" x2="50" y2="150" stroke="rgba(230,219,116,0.05)" stroke-width="1"/><circle cx="30" cy="30" r="3" fill="rgba(102,217,239,0.3)"/><circle cx="170" cy="30" r="2" fill="rgba(174,129,255,0.2)"/><circle cx="100" cy="100" r="4" fill="rgba(166,226,46,0.25)"/><circle cx="30" cy="170" r="2" fill="rgba(102,217,239,0.2)"/><circle cx="170" cy="170" r="3" fill="rgba(174,129,255,0.3)"/></pattern></defs><rect width="200" height="200" fill="%23272822"/><rect width="200" height="200" fill="url(%23network)"/></svg>') repeat;
-            background-color: var(--monokai-bg);
-            border-bottom: 2px solid var(--monokai-yellow);
-            color: var(--monokai-fg);
-            padding: 8rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -15%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(166, 226, 46, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-            filter: blur(60px);
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(102, 217, 239, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 25s ease-in-out infinite reverse;
-            filter: blur(60px);
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            animation: slideDown 0.7s ease-out;
-            color: var(--monokai-cyan);
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(102, 217, 239, 0.3);
-        }
-
-        .hero .role {
-            font-size: 1.4rem;
-            color: var(--monokai-yellow);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            animation: slideUp 0.7s ease-out 0.1s both;
-            letter-spacing: 1px;
-        }
-
-        .hero .subtitle {
-            font-size: 1.15rem;
-            color: var(--monokai-fg);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            animation: slideUp 0.7s ease-out 0.2s both;
-            max-width: 700px;
-        }
-
-        .hero .transition-note {
-            background: var(--monokai-light);
-            border: 2px solid var(--monokai-cyan);
-            border-left: 4px solid var(--monokai-green);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2.5rem;
-            animation: slideUp 0.7s ease-out 0.3s both;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            box-shadow: 0 0 15px rgba(102, 217, 239, 0.1);
-        }
-
-        .transition-note strong {
-            color: var(--monokai-green);
-        }
-
-        .hero .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            animation: slideUp 0.7s ease-out 0.4s both;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background: var(--monokai-cyan);
-            color: var(--monokai-dark);
-            box-shadow: 0 0 20px rgba(102, 217, 239, 0.4);
-            border: 2px solid var(--monokai-cyan);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 40px rgba(102, 217, 239, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--monokai-yellow);
-            border: 2px solid var(--monokai-yellow);
-            box-shadow: 0 0 15px rgba(230, 219, 116, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: var(--monokai-light);
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(230, 219, 116, 0.4);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            50% { transform: translateY(-30px) translateX(20px); }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* About Section */
-        .about-section {
-            background: var(--monokai-bg);
-            border-top: 2px solid var(--monokai-orange);
-            border-bottom: 2px solid var(--monokai-purple);
-            padding: 6rem 0;
-        }
-
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .headshot-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-        }
-
-        .headshot-frame {
-            position: relative;
-            width: 300px;
-            height: 380px;
-            border: 3px solid var(--monokai-cyan);
-            border-radius: 8px;
-            overflow: hidden;
-            background: var(--monokai-light);
-            box-shadow: 
-                0 0 30px rgba(102, 217, 239, 0.4),
-                inset 0 0 30px rgba(102, 217, 239, 0.1);
-        }
-
-        .headshot-frame::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(102, 217, 239, 0.1) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
-            z-index: 1;
-        }
-
-        .headshot-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--monokai-gray);
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 1rem;
-            position: relative;
-            z-index: 2;
-            background: var(--monokai-light);
-        }
-
-        .headshot-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%); }
-            100% { transform: translateX(100%) translateY(100%); }
-        }
-
-        .about-text h2 {
-            font-size: 2.8rem;
-            color: var(--monokai-yellow);
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        .about-text-box {
-            background: var(--monokai-light);
-            border: 2px solid var(--monokai-yellow);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(230, 219, 116, 0.1);
-        }
-
-        .about-text p {
-            color: var(--monokai-fg);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        .fun-fact {
-            background: var(--monokai-bg);
-            border: 2px solid var(--monokai-green);
-            border-left: 4px solid var(--monokai-green);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-            box-shadow: 0 0 15px rgba(166, 226, 46, 0.1);
-        }
-
-        .fun-fact strong {
-            color: var(--monokai-green);
-        }
-
-        /* Section Styling */
-        section {
-            padding: 6rem 0;
-            position: relative;
-            border-bottom: 2px solid var(--monokai-light);
-        }
-
-        section h2 {
-            font-size: 3.2rem;
-            font-weight: 900;
-            margin-bottom: 4rem;
-            text-align: center;
-            color: var(--monokai-yellow);
-            letter-spacing: 1px;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-        }
-
-        .project-card {
-            background: var(--monokai-light);
-            border: 2px solid var(--monokai-cyan);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(102, 217, 239, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 50px rgba(102, 217, 239, 0.3);
-            border-color: var(--monokai-green);
-        }
-
-        .project-header {
-            background: var(--monokai-dark);
-            border-bottom: 3px solid var(--monokai-cyan);
-            color: var(--monokai-cyan);
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-header h3 {
-            font-size: 2.2rem;
-            margin-bottom: 0.8rem;
-            position: relative;
-            z-index: 2;
-            color: var(--monokai-green);
-            letter-spacing: 1px;
-        }
-
-        .project-header p {
-            font-size: 1.1rem;
-            color: var(--monokai-cyan);
-            position: relative;
-            z-index: 2;
-        }
-
-        .project-body {
-            padding: 2.5rem;
-        }
-
-        .badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 2rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--monokai-dark);
-            color: var(--monokai-yellow);
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border: 1px solid var(--monokai-yellow);
-            letter-spacing: 0.5px;
-        }
-
-        .project-description {
-            color: var(--monokai-fg);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .features-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2.5rem 0;
-        }
-
-        .feature-box {
-            background: var(--monokai-bg);
-            border: 2px solid var(--monokai-gray);
-            border-left: 4px solid var(--monokai-cyan);
-            padding: 1.8rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-box:nth-child(2) {
-            border-left-color: var(--monokai-green);
-        }
-
-        .feature-box:nth-child(3) {
-            border-left-color: var(--monokai-orange);
-        }
-
-        .feature-box:nth-child(4) {
-            border-left-color: var(--monokai-yellow);
-        }
-
-        .feature-box:nth-child(5) {
-            border-left-color: var(--monokai-red);
-        }
-
-        .feature-box:nth-child(6) {
-            border-left-color: var(--monokai-purple);
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-            background: var(--monokai-light);
-            box-shadow: 0 0 20px rgba(102, 217, 239, 0.2);
-            border-color: var(--monokai-cyan);
-        }
-
-        .feature-box h4 {
-            color: var(--monokai-cyan);
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .feature-box p {
-            color: var(--monokai-fg);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .metrics {
-            background: var(--monokai-dark);
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-            border: 2px solid var(--monokai-orange);
-            box-shadow: 0 0 20px rgba(253, 151, 31, 0.1);
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .metric {
-            text-align: center;
-            background: var(--monokai-light);
-            padding: 1.5rem;
-            border-radius: 6px;
-            border: 1px solid var(--monokai-orange);
-        }
-
-        .metric-value {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--monokai-green);
-            letter-spacing: 1px;
-        }
-
-        .metric-label {
-            color: var(--monokai-fg);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            font-weight: 600;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--monokai-light);
-        }
-
-        .project-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--monokai-dark);
-            color: var(--monokai-yellow);
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--monokai-yellow);
-            box-shadow: 0 0 15px rgba(230, 219, 116, 0.2);
-            letter-spacing: 0.5px;
-        }
-
-        .project-links a:hover {
-            transform: translateX(5px);
-            box-shadow: 0 0 30px rgba(230, 219, 116, 0.4);
-            background: var(--monokai-yellow);
-            color: var(--monokai-dark);
-        }
-
-        /* Experience Timeline */
-        .experience-section {
-            background: var(--monokai-bg);
-            padding: 6rem 0;
-        }
-
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --monokai-bg: #272822;
+        --monokai-fg: #f8f8f2;
+        --monokai-red: #f92672;
+        --monokai-orange: #fd971f;
+        --monokai-yellow: #e6db74;
+        --monokai-green: #a6e22e;
+        --monokai-cyan: #66d9ef;
+        --monokai-purple: #ae81ff;
+        --monokai-gray: #75715e;
+        --monokai-dark: #1e1f1c;
+        --monokai-light: #3e3d32;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          'Cascadia Code', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        line-height: 1.6;
+        color: var(--monokai-fg);
+        background: var(--monokai-bg);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="network" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><line x1="30" y1="30" x2="170" y2="30" stroke="rgba(102,217,239,0.1)" stroke-width="1"/><line x1="30" y1="100" x2="170" y2="100" stroke="rgba(102,217,239,0.08)" stroke-width="1"/><line x1="30" y1="170" x2="170" y2="170" stroke="rgba(102,217,239,0.1)" stroke-width="1"/><line x1="30" y1="30" x2="30" y2="170" stroke="rgba(174,129,255,0.1)" stroke-width="1"/><line x1="100" y1="30" x2="100" y2="170" stroke="rgba(174,129,255,0.08)" stroke-width="1"/><line x1="170" y1="30" x2="170" y2="170" stroke="rgba(174,129,255,0.1)" stroke-width="1"/><line x1="50" y1="50" x2="150" y2="150" stroke="rgba(230,219,116,0.05)" stroke-width="1"/><line x1="150" y1="50" x2="50" y2="150" stroke="rgba(230,219,116,0.05)" stroke-width="1"/><circle cx="30" cy="30" r="3" fill="rgba(102,217,239,0.3)"/><circle cx="170" cy="30" r="2" fill="rgba(174,129,255,0.2)"/><circle cx="100" cy="100" r="4" fill="rgba(166,226,46,0.25)"/><circle cx="30" cy="170" r="2" fill="rgba(102,217,239,0.2)"/><circle cx="170" cy="170" r="3" fill="rgba(174,129,255,0.3)"/></pattern></defs><rect width="200" height="200" fill="%23272822"/><rect width="200" height="200" fill="url(%23network)"/></svg>')
+          repeat;
+        background-color: var(--monokai-bg);
+        border-bottom: 2px solid var(--monokai-yellow);
+        color: var(--monokai-fg);
+        padding: 8rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: -30%;
+        right: -15%;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(166, 226, 46, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        animation: float 20s ease-in-out infinite;
+        filter: blur(60px);
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        bottom: -20%;
+        left: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(102, 217, 239, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        animation: float 25s ease-in-out infinite reverse;
+        filter: blur(60px);
+      }
+
+      .hero .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 4.5rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+        animation: slideDown 0.7s ease-out;
+        color: var(--monokai-cyan);
+        letter-spacing: -1px;
+        text-shadow: 0 0 20px rgba(102, 217, 239, 0.3);
+      }
+
+      .hero .role {
+        font-size: 1.4rem;
+        color: var(--monokai-yellow);
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        animation: slideUp 0.7s ease-out 0.1s both;
+        letter-spacing: 1px;
+      }
+
+      .hero .subtitle {
+        font-size: 1.15rem;
+        color: var(--monokai-fg);
+        margin-bottom: 2rem;
+        line-height: 1.8;
+        animation: slideUp 0.7s ease-out 0.2s both;
+        max-width: 700px;
+      }
+
+      .hero .transition-note {
+        background: var(--monokai-light);
+        border: 2px solid var(--monokai-cyan);
+        border-left: 4px solid var(--monokai-green);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2.5rem;
+        animation: slideUp 0.7s ease-out 0.3s both;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        box-shadow: 0 0 15px rgba(102, 217, 239, 0.1);
+      }
+
+      .transition-note strong {
+        color: var(--monokai-green);
+      }
+
+      .hero .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        animation: slideUp 0.7s ease-out 0.4s both;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        letter-spacing: 1px;
+      }
+
+      .btn-primary {
+        background: var(--monokai-cyan);
+        color: var(--monokai-dark);
+        box-shadow: 0 0 20px rgba(102, 217, 239, 0.4);
+        border: 2px solid var(--monokai-cyan);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 40px rgba(102, 217, 239, 0.6);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--monokai-yellow);
+        border: 2px solid var(--monokai-yellow);
+        box-shadow: 0 0 15px rgba(230, 219, 116, 0.2);
+      }
+
+      .btn-secondary:hover {
+        background: var(--monokai-light);
+        transform: translateY(-3px);
+        box-shadow: 0 0 30px rgba(230, 219, 116, 0.4);
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) translateX(0px);
+        }
+        50% {
+          transform: translateY(-30px) translateX(20px);
+        }
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* About Section */
+      .about-section {
+        background: var(--monokai-bg);
+        border-top: 2px solid var(--monokai-orange);
+        border-bottom: 2px solid var(--monokai-purple);
+        padding: 6rem 0;
+      }
+
+      .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .headshot-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+      }
+
+      .headshot-frame {
+        position: relative;
+        width: 300px;
+        height: 380px;
+        border: 3px solid var(--monokai-cyan);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--monokai-light);
+        box-shadow:
+          0 0 30px rgba(102, 217, 239, 0.4),
+          inset 0 0 30px rgba(102, 217, 239, 0.1);
+      }
+
+      .headshot-frame::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(102, 217, 239, 0.1) 50%,
+          transparent 70%
+        );
+        animation: shimmer 3s infinite;
+        z-index: 1;
+      }
+
+      .headshot-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--monokai-gray);
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 1rem;
+        position: relative;
+        z-index: 2;
+        background: var(--monokai-light);
+      }
+
+      .headshot-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%) translateY(-100%);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%);
+        }
+      }
+
+      .about-text h2 {
+        font-size: 2.8rem;
+        color: var(--monokai-yellow);
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+      }
+
+      .about-text-box {
+        background: var(--monokai-light);
+        border: 2px solid var(--monokai-yellow);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(230, 219, 116, 0.1);
+      }
+
+      .about-text p {
+        color: var(--monokai-fg);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+      }
+
+      .fun-fact {
+        background: var(--monokai-bg);
+        border: 2px solid var(--monokai-green);
+        border-left: 4px solid var(--monokai-green);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+        box-shadow: 0 0 15px rgba(166, 226, 46, 0.1);
+      }
+
+      .fun-fact strong {
+        color: var(--monokai-green);
+      }
+
+      /* Section Styling */
+      section {
+        padding: 6rem 0;
+        position: relative;
+        border-bottom: 2px solid var(--monokai-light);
+      }
+
+      section h2 {
+        font-size: 3.2rem;
+        font-weight: 900;
+        margin-bottom: 4rem;
+        text-align: center;
+        color: var(--monokai-yellow);
+        letter-spacing: 1px;
+      }
+
+      /* Projects Grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .project-card {
+        background: var(--monokai-light);
+        border: 2px solid var(--monokai-cyan);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(102, 217, 239, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 0 50px rgba(102, 217, 239, 0.3);
+        border-color: var(--monokai-green);
+      }
+
+      .project-header {
+        background: var(--monokai-dark);
+        border-bottom: 3px solid var(--monokai-cyan);
+        color: var(--monokai-cyan);
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-header h3 {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+        position: relative;
+        z-index: 2;
+        color: var(--monokai-green);
+        letter-spacing: 1px;
+      }
+
+      .project-header p {
+        font-size: 1.1rem;
+        color: var(--monokai-cyan);
+        position: relative;
+        z-index: 2;
+      }
+
+      .project-body {
+        padding: 2.5rem;
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+      }
+
+      .badge {
+        display: inline-block;
+        background: var(--monokai-dark);
+        color: var(--monokai-yellow);
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        border: 1px solid var(--monokai-yellow);
+        letter-spacing: 0.5px;
+      }
+
+      .project-description {
+        color: var(--monokai-fg);
+        margin-bottom: 2rem;
+        line-height: 1.8;
+        font-size: 1.05rem;
+      }
+
+      .features-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2.5rem 0;
+      }
+
+      .feature-box {
+        background: var(--monokai-bg);
+        border: 2px solid var(--monokai-gray);
+        border-left: 4px solid var(--monokai-cyan);
+        padding: 1.8rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-box:nth-child(2) {
+        border-left-color: var(--monokai-green);
+      }
+
+      .feature-box:nth-child(3) {
+        border-left-color: var(--monokai-orange);
+      }
+
+      .feature-box:nth-child(4) {
+        border-left-color: var(--monokai-yellow);
+      }
+
+      .feature-box:nth-child(5) {
+        border-left-color: var(--monokai-red);
+      }
+
+      .feature-box:nth-child(6) {
+        border-left-color: var(--monokai-purple);
+      }
+
+      .feature-box:hover {
+        transform: translateY(-5px);
+        background: var(--monokai-light);
+        box-shadow: 0 0 20px rgba(102, 217, 239, 0.2);
+        border-color: var(--monokai-cyan);
+      }
+
+      .feature-box h4 {
+        color: var(--monokai-cyan);
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .feature-box p {
+        color: var(--monokai-fg);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .metrics {
+        background: var(--monokai-dark);
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 2rem 0;
+        border: 2px solid var(--monokai-orange);
+        box-shadow: 0 0 20px rgba(253, 151, 31, 0.1);
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .metric {
+        text-align: center;
+        background: var(--monokai-light);
+        padding: 1.5rem;
+        border-radius: 6px;
+        border: 1px solid var(--monokai-orange);
+      }
+
+      .metric-value {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--monokai-green);
+        letter-spacing: 1px;
+      }
+
+      .metric-label {
+        color: var(--monokai-fg);
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        font-weight: 600;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--monokai-light);
+      }
+
+      .project-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background: var(--monokai-dark);
+        color: var(--monokai-yellow);
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        border: 2px solid var(--monokai-yellow);
+        box-shadow: 0 0 15px rgba(230, 219, 116, 0.2);
+        letter-spacing: 0.5px;
+      }
+
+      .project-links a:hover {
+        transform: translateX(5px);
+        box-shadow: 0 0 30px rgba(230, 219, 116, 0.4);
+        background: var(--monokai-yellow);
+        color: var(--monokai-dark);
+      }
+
+      /* Experience Timeline */
+      .experience-section {
+        background: var(--monokai-bg);
+        padding: 6rem 0;
+      }
+
+      .timeline {
+        position: relative;
+        padding: 2rem 0;
+      }
+
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          var(--monokai-cyan),
+          var(--monokai-green),
+          var(--monokai-yellow)
+        );
+        box-shadow: 0 0 20px rgba(102, 217, 239, 0.5);
+      }
+
+      .timeline-item {
+        margin-bottom: 3rem;
+        width: 45%;
+      }
+
+      .timeline-item:nth-child(odd) {
+        margin-left: 0;
+        text-align: right;
+        padding-right: 5%;
+      }
+
+      .timeline-item:nth-child(even) {
+        margin-left: 55%;
+        text-align: left;
+        padding-left: 5%;
+      }
+
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--monokai-dark);
+        border: 3px solid var(--monokai-cyan);
+        border-radius: 50%;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 15px rgba(102, 217, 239, 0.5);
+      }
+
+      .timeline-item:nth-child(even)::before {
+        border-color: var(--monokai-green);
+        box-shadow: 0 0 15px rgba(166, 226, 46, 0.5);
+      }
+
+      .timeline-content {
+        background: var(--monokai-light);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(102, 217, 239, 0.1);
+        border: 2px solid var(--monokai-cyan);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 40px rgba(102, 217, 239, 0.2);
+        border-color: var(--monokai-yellow);
+        background: var(--monokai-bg);
+      }
+
+      .timeline-content h3 {
+        font-size: 1.4rem;
+        color: var(--monokai-cyan);
+        margin-bottom: 0.4rem;
+        letter-spacing: 0.5px;
+      }
+
+      .timeline-content .company {
+        color: var(--monokai-yellow);
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+        letter-spacing: 0.5px;
+      }
+
+      .timeline-content .period {
+        color: var(--monokai-gray);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .timeline-content ul {
+        list-style: none;
+      }
+
+      .timeline-content li {
+        color: var(--monokai-fg);
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        position: relative;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .timeline-content li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: var(--monokai-green);
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
         .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--monokai-cyan), var(--monokai-green), var(--monokai-yellow));
-            box-shadow: 0 0 20px rgba(102, 217, 239, 0.5);
+          left: 20px;
         }
 
         .timeline-item {
-            margin-bottom: 3rem;
-            width: 45%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            margin-left: 0;
-            text-align: right;
-            padding-right: 5%;
-        }
-
-        .timeline-item:nth-child(even) {
-            margin-left: 55%;
-            text-align: left;
-            padding-left: 5%;
+          width: 100%;
+          margin-left: 0 !important;
+          text-align: left !important;
+          padding-right: 0 !important;
+          padding-left: 60px !important;
         }
 
         .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--monokai-dark);
-            border: 3px solid var(--monokai-cyan);
-            border-radius: 50%;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px rgba(102, 217, 239, 0.5);
+          left: 8px;
         }
 
-        .timeline-item:nth-child(even)::before {
-            border-color: var(--monokai-green);
-            box-shadow: 0 0 15px rgba(166, 226, 46, 0.5);
+        .about-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Skills Section */
+      .skills-section {
+        background: var(--monokai-dark);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .skill-card {
+        background: var(--monokai-light);
+        padding: 2rem;
+        border-radius: 8px;
+        border: 2px solid var(--monokai-purple);
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(174, 129, 255, 0.1);
+      }
+
+      .skill-card:hover {
+        background: var(--monokai-bg);
+        border-color: var(--monokai-cyan);
+        box-shadow: 0 0 30px rgba(102, 217, 239, 0.2);
+        transform: translateY(-5px);
+      }
+
+      .skill-card h3 {
+        font-size: 1.4rem;
+        color: var(--monokai-cyan);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        letter-spacing: 0.5px;
+      }
+
+      .skill-card h3::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: var(--monokai-cyan);
+        border-radius: 2px;
+        box-shadow: 0 0 10px rgba(102, 217, 239, 0.5);
+      }
+
+      .skill-card p {
+        color: var(--monokai-fg);
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+
+      .highlight {
+        color: var(--monokai-green);
+        font-weight: 700;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        background: var(--monokai-dark);
+        border-top: 3px solid var(--monokai-cyan);
+        border-bottom: 3px solid var(--monokai-cyan);
+        color: var(--monokai-fg);
+        text-align: center;
+        padding: 6rem 2rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(102, 217, 239, 0.1);
+      }
+
+      .contact-section h2 {
+        color: var(--monokai-yellow);
+      }
+
+      .contact-description {
+        font-size: 1.2rem;
+        color: var(--monokai-fg);
+        margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-links {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+
+      .contact-links a {
+        background: var(--monokai-light);
+        color: var(--monokai-cyan);
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 2px solid var(--monokai-cyan);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 0 15px rgba(102, 217, 239, 0.2);
+        letter-spacing: 0.5px;
+      }
+
+      .contact-links a:hover {
+        background: var(--monokai-cyan);
+        color: var(--monokai-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px rgba(102, 217, 239, 0.4);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--monokai-dark);
+        color: var(--monokai-gray);
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.9rem;
+        border-top: 2px solid var(--monokai-light);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero {
+          padding: 5rem 1.5rem;
         }
 
-        .timeline-content {
-            background: var(--monokai-light);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(102, 217, 239, 0.1);
-            border: 2px solid var(--monokai-cyan);
-            transition: all 0.3s ease;
-            position: relative;
+        .hero h1 {
+          font-size: 2.5rem;
         }
 
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 40px rgba(102, 217, 239, 0.2);
-            border-color: var(--monokai-yellow);
-            background: var(--monokai-bg);
+        .hero .subtitle {
+          font-size: 1rem;
         }
 
-        .timeline-content h3 {
-            font-size: 1.4rem;
-            color: var(--monokai-cyan);
-            margin-bottom: 0.4rem;
-            letter-spacing: 0.5px;
+        section h2 {
+          font-size: 2.2rem;
         }
 
-        .timeline-content .company {
-            color: var(--monokai-yellow);
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-            letter-spacing: 0.5px;
+        .project-header h3 {
+          font-size: 1.6rem;
         }
 
-        .timeline-content .period {
-            color: var(--monokai-gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content ul {
-            list-style: none;
-        }
-
-        .timeline-content li {
-            color: var(--monokai-fg);
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .timeline-content li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--monokai-green);
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                margin-left: 0 !important;
-                text-align: left !important;
-                padding-right: 0 !important;
-                padding-left: 60px !important;
-            }
-
-            .timeline-item::before {
-                left: 8px;
-            }
-
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Skills Section */
-        .skills-section {
-            background: var(--monokai-dark);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: var(--monokai-light);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid var(--monokai-purple);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(174, 129, 255, 0.1);
-        }
-
-        .skill-card:hover {
-            background: var(--monokai-bg);
-            border-color: var(--monokai-cyan);
-            box-shadow: 0 0 30px rgba(102, 217, 239, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .skill-card h3 {
-            font-size: 1.4rem;
-            color: var(--monokai-cyan);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-
-        .skill-card h3::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--monokai-cyan);
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(102, 217, 239, 0.5);
-        }
-
-        .skill-card p {
-            color: var(--monokai-fg);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .highlight {
-            color: var(--monokai-green);
-            font-weight: 700;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: var(--monokai-dark);
-            border-top: 3px solid var(--monokai-cyan);
-            border-bottom: 3px solid var(--monokai-cyan);
-            color: var(--monokai-fg);
-            text-align: center;
-            padding: 6rem 2rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(102, 217, 239, 0.1);
-        }
-
-        .contact-section h2 {
-            color: var(--monokai-yellow);
-        }
-
-        .contact-description {
-            font-size: 1.2rem;
-            color: var(--monokai-fg);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .features-showcase {
+          grid-template-columns: 1fr;
         }
 
         .contact-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
+          flex-direction: column;
+          align-items: center;
         }
-
-        .contact-links a {
-            background: var(--monokai-light);
-            color: var(--monokai-cyan);
-            padding: 1rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 700;
-            border: 2px solid var(--monokai-cyan);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 0 15px rgba(102, 217, 239, 0.2);
-            letter-spacing: 0.5px;
-        }
-
-        .contact-links a:hover {
-            background: var(--monokai-cyan);
-            color: var(--monokai-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(102, 217, 239, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--monokai-dark);
-            color: var(--monokai-gray);
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            border-top: 2px solid var(--monokai-light);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 5rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1rem;
-            }
-
-            section h2 {
-                font-size: 2.2rem;
-            }
-
-            .project-header h3 {
-                font-size: 1.6rem;
-            }
-
-            .features-showcase {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <h1>Karthik Kalletla</h1>
-            <div class="role">> Full-Stack & AI/LLM Engineer</div>
-            <p class="subtitle">Software engineer with 4+ years building production full-stack systems, now focused on making AI reliable in production. Backend-first across NestJS, Java/Spring Boot, and Kubernetes/AKS, with Angular/React on the front end — plus LLM/RAG systems with the Claude API.</p>
-            
-            <div class="transition-note">
-                <strong>🚀 What I do:</strong> I own client-facing production systems end to end — from on-site client requirements through design, deployment, and keeping them reliable under deadline pressure. I bring the same rigor to AI: my note-chat project combines a Claude-powered RAG pipeline with production reliability patterns (circuit breaker, retry), an evaluation harness, and cost/latency observability. Open to Full-Stack, AI/LLM, and Forward-Deployed Engineer roles.
-            </div>
+      <div class="container">
+        <h1>Karthik Kalletla</h1>
+        <div class="role">> Full-Stack & AI/LLM Engineer</div>
+        <p class="subtitle">
+          Software engineer with 4+ years building production full-stack
+          systems, now focused on making AI reliable in production.
+          Backend-first across NestJS, Java/Spring Boot, and Kubernetes/AKS,
+          with Angular/React on the front end — plus LLM/RAG systems with the
+          Claude API.
+        </p>
 
-            <div class="cta-buttons">
-                <a href="#about" class="btn btn-primary">LEARN MORE</a>
-                <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
-            </div>
+        <div class="transition-note">
+          <strong>🚀 What I do:</strong> I own client-facing production systems
+          end to end — from on-site client requirements through design,
+          deployment, and keeping them reliable under deadline pressure. I bring
+          the same rigor to AI: my note-chat project combines a Claude-powered
+          RAG pipeline with production reliability patterns (circuit breaker,
+          retry), an evaluation harness, and cost/latency observability. Open to
+          Full-Stack, AI/LLM, and Forward-Deployed Engineer roles.
         </div>
+
+        <div class="cta-buttons">
+          <a href="#about" class="btn btn-primary">LEARN MORE</a>
+          <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section class="about-section" id="about">
-        <div class="container">
-            <div class="about-container">
-                <div class="headshot-box">
-                    <div class="headshot-frame">
-                        <div class="headshot-placeholder">
-							<img src="headshot.jpg" alt="Professional Headshot" class="headshot-img">	
-                        </div>
-                    </div>
-                </div>
-
-                <div class="about-text">
-                    <h2>ABOUT ME</h2>
-                    <div class="about-text-box">
-                        <p>
-                            I'm a software engineer with <span class="highlight">4+ years</span> building and running production full-stack systems — 
-                            backend-first, with a focus on <span class="highlight">reliability and pragmatic engineering</span>.
-                        </p>
-                        <p>
-                            More recently I've focused on <span class="highlight">AI systems and LLM deployment</span>. 
-                            I believe deploying AI reliably takes the same rigor as any production system: 
-                            circuit breakers, monitoring, caching, and thoughtful error handling.
-                        </p>
-                        <p>
-                            My tech stack spans <span class="highlight">TypeScript, NestJS, Java Spring Boot, Angular, PostgreSQL, Kubernetes, Azure, 
-                            the Claude API, RAG, and distributed systems</span>. I approach every problem by understanding constraints first, 
-                            then designing for reliability.
-                        </p>
-
-                        <div class="fun-fact">
-                            <strong>🎮 Fun Fact:</strong> I'm obsessed with system design problems—whether it's optimizing cache hit rates, 
-                            designing circuit breaker state machines, or routing API requests intelligently to save costs. 
-                            I love the puzzle of making systems both reliable AND efficient. When I'm not coding, I'm thinking about 
-                            how distributed systems fail and how to design them to recover gracefully.
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="about-container">
+          <div class="headshot-box">
+            <div class="headshot-frame">
+              <div class="headshot-placeholder">
+                <img
+                  src="headshot.jpg"
+                  alt="Professional Headshot"
+                  class="headshot-img"
+                />
+              </div>
             </div>
+          </div>
+
+          <div class="about-text">
+            <h2>ABOUT ME</h2>
+            <div class="about-text-box">
+              <p>
+                I'm a software engineer with
+                <span class="highlight">4+ years</span> building and running
+                production full-stack systems — backend-first, with a focus on
+                <span class="highlight"
+                  >reliability and pragmatic engineering</span
+                >.
+              </p>
+              <p>
+                More recently I've focused on
+                <span class="highlight">AI systems and LLM deployment</span>. I
+                believe deploying AI reliably takes the same rigor as any
+                production system: circuit breakers, monitoring, caching, and
+                thoughtful error handling.
+              </p>
+              <p>
+                My tech stack spans
+                <span class="highlight"
+                  >TypeScript, NestJS, Java Spring Boot, Angular, PostgreSQL,
+                  Kubernetes, Azure, the Claude API, RAG, and distributed
+                  systems</span
+                >. I approach every problem by understanding constraints first,
+                then designing for reliability.
+              </p>
+
+              <div class="fun-fact">
+                <strong>🎮 Fun Fact:</strong> I'm obsessed with system design
+                problems—whether it's optimizing cache hit rates, designing
+                circuit breaker state machines, or routing API requests
+                intelligently to save costs. I love the puzzle of making systems
+                both reliable AND efficient. When I'm not coding, I'm thinking
+                about how distributed systems fail and how to design them to
+                recover gracefully.
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
-        <div class="container">
-            <h2>FEATURED PROJECTS</h2>
-            
-            <div class="projects-grid">
-                <!-- note-chat -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>🤖 note-chat</h3>
-                        <p>Claude-Powered RAG Assistant with Production Reliability Patterns</p>
-                    </div>
-                    <div class="project-body">
-                        <div class="badges">
-                            <span class="badge">Claude API</span>
-                            <span class="badge">RAG</span>
-                            <span class="badge">LangChain / LangGraph</span>
-                            <span class="badge">NestJS</span>
-                            <span class="badge">PostgreSQL</span>
-                            <span class="badge">Production Patterns</span>
-                        </div>
+      <div class="container">
+        <h2>FEATURED PROJECTS</h2>
 
-                        <p class="project-description">
-                            A Claude-powered RAG assistant that answers natural-language questions over CRM notes. 
-                            It combines in-memory hybrid retrieval with a LangChain/LangGraph pipeline and production reliability 
-                            patterns — circuit breaker, retry, multi-level caching, and observability — built in from the start. 
-                            (Portfolio project.)
-                        </p>
-
-                        <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-cyan); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
-                            <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">🏗️ ARCHITECTURE (LangGraph PIPELINE)</h4>
-                            <p style="color: var(--monokai-fg); margin-bottom: 1rem; line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Classify</strong> - Chain-of-thought complexity check routes simple vs. complex queries<br>
-                                <strong style="color: var(--monokai-green);">Retrieve</strong> - In-memory hybrid search: BM25 + Jaccard token overlap + metadata boosts, fused 50/30/20<br>
-                                <strong style="color: var(--monokai-green);">Select</strong> - Importance-weighted chunk selection within a 5K-token budget<br>
-                                <strong style="color: var(--monokai-green);">Generate</strong> - Pass selected chunks to Claude for evidence-based answers<br>
-                                <strong style="color: var(--monokai-green);">Orchestration</strong> - LangChain/LangGraph state machine with conditional routing between steps
-                            </p>
-                        </div>
-
-                        <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">⚙️ PRODUCTION PATTERNS (6 CORE SYSTEMS)</h4>
-                        <div class="features-showcase">
-                            <div class="feature-box">
-                                <h4>Circuit Breaker</h4>
-                                <p>CLOSED → OPEN → HALF_OPEN. Prevents cascading failures. Fails fast, recovers automatically after 60s timeout.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Retry Logic</h4>
-                                <p>Exponential backoff (100ms → 200ms → 400ms). Handles transient failures gracefully. Max 3 retries.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Multi-Level Caching</h4>
-                                <p>Exact-match (hash) and near-duplicate extraction caches plus a response cache, so repeat or near-identical inputs skip redundant Claude calls.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Model Routing</h4>
-                                <p>Simple queries → Claude Haiku (cheap, fast). Complex → Opus (quality). Routed by query complexity to control cost.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Observability</h4>
-                                <p>Metrics endpoints tracking latency, cost-per-call, cache-hit rate, candidates retrieved, and context utilization.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Context Management</h4>
-                                <p>Chunking (~500 tokens with ~50-token overlap) and importance-weighted selection (0.7 × relevance + 0.3 × recency) within a 5K-token budget.</p>
-                            </div>
-                        </div>
-
-                        <div class="metrics">
-                            <div class="metrics-grid">
-                                <div class="metric">
-                                    <div class="metric-value">88%</div>
-                                    <div class="metric-label">Accuracy (50-query eval set)</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">50/30/20</div>
-                                    <div class="metric-label">BM25 / Jaccard / Metadata</div>
-                                </div>
-                                <div class="metric">
-                                    <div class="metric-value">5K</div>
-                                    <div class="metric-label">Token Context Budget</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-orange); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
-                            <h4 style="color: var(--monokai-orange); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">📚 DESIGN DECISIONS</h4>
-                            <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Why hybrid lexical retrieval?</strong> An early TF-IDF approach scored relevant notes near zero on matching queries. Rebuilt as BM25 + Jaccard + metadata fusion, which fixed retrieval on the eval set.
-                            </p>
-                            <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Why Haiku + Opus?</strong> Route by query complexity — cheap/fast model for simple lookups, stronger model for complex reasoning — instead of paying for the big model on every call.
-                            </p>
-                            <p style="color: var(--monokai-fg); margin-bottom: 0.8rem; line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Why Circuit Breaker?</strong> The Claude API can fail. Fail fast, recover automatically, don't cascade failures.
-                            </p>
-                            <p style="color: var(--monokai-fg); line-height: 1.8; font-size: 0.95rem;">
-                                <strong style="color: var(--monokai-green);">Next step:</strong> Dense embeddings + pgvector (and cross-encoder reranking) to add true semantic retrieval at scale.
-                            </p>
-                        </div>
-
-                        <div class="project-links">
-                            <a href="https://github.com/karthikkalletla97/research-assistant" target="_blank">📂 VIEW CODE</a>
-                            <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/ARCHITECTURE.md" target="_blank">🏗️ ARCHITECTURE</a>
-                            <a href="https://github.com/karthikkalletla97/research-assistant/blob/main/docs/DESIGN_DECISIONS.md" target="_blank">💡 DECISIONS</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Helm43 -->
-                <div class="project-card">
-                    <div class="project-header" style="background: var(--monokai-dark); border-bottom-color: var(--monokai-yellow);">
-                        <h3 style="color: var(--monokai-yellow);">🏢 Helm43: Full-Stack Production Systems</h3>
-                        <p>Backend, Frontend, Database, DevOps, Kubernetes for 500+ Field Users</p>
-                    </div>
-                    <div class="project-body">
-                        <div class="badges">
-                            <span class="badge">NestJS</span>
-                            <span class="badge">Spring Boot</span>
-                            <span class="badge">Angular</span>
-                            <span class="badge">PostgreSQL</span>
-                            <span class="badge">Kubernetes</span>
-                            <span class="badge">Azure AKS</span>
-                        </div>
-
-                        <p class="project-description">
-                            Full-stack Software Engineer at Helm43 (Mar 2024 - Present) contributing across backend development, frontend fixes, SQL reporting, 
-                            DevOps pipelines, and Kubernetes deployments. Supporting multiple production applications serving 500+ field users with high reliability requirements.
-                        </p>
-
-                        <h4 style="color: var(--monokai-cyan); font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">💻 BACKEND DEVELOPMENT</h4>
-                        <div class="features-showcase">
-                            <div class="feature-box">
-                                <h4>NestJS Microservices</h4>
-                                <p>Built and enhanced microservices for dealer, personnel, mentor-apprentice, allocation, admin, and reporting systems. Controllers, services, DTOs, message patterns.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Mentor-Apprentice Dashboard</h4>
-                                <p>Designed APIs for personnel feed, relationship save/delete, network graphs, role-based permissions. Complex business rules for technician eligibility.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>HINO Honors Automation</h4>
-                                <p>Automated 2025-2026 HINO Honors program with rule execution, dashboard refresh, Excel staging, monthly report generation. Handles 5+ manager roles with complex qualification logic.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>SQL Server & Reporting</h4>
-                                <p>Complex stored procedures, temp tables, joins, aggregations. Debugged report duplication, incorrect totals, missing dealer relationships. Worked with ClientRewards, BulkOil databases.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>BulkOil Application</h4>
-                                <p>Supported BulkOil codebase for data validation and reporting. Investigated dealer/distributor PA code relationships. Resolved contract-related validation issues.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Spring Boot & JSP</h4>
-                                <p>Worked on legacy Java/JSP applications. Client dashboards, internal tools, controller logic, XML configuration, cache handling, support flows.</p>
-                            </div>
-                        </div>
-
-                        <h4 style="color: var(--monokai-yellow); font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; letter-spacing: 0.5px;">🚀 DEVOPS & INFRASTRUCTURE</h4>
-                        <div class="features-showcase">
-                            <div class="feature-box">
-                                <h4>Azure DevOps Pipelines</h4>
-                                <p>Debugged Node/npm versions, NestJS builds, Angular failures. Handled npm authentication, Nexus downloads, checksum errors. Deployed across Dev/QA/UAT/Prod environments.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Kubernetes/AKS</h4>
-                                <p>Investigated pod failures, checked logs, environment variables, config mounts, rollout status. Worked with namespaces, deployments, services, ingress, secrets. 15+ microservices migrated.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Cert-Manager & TLS</h4>
-                                <p>Handled certificate renewal issues (90-day expiry cycles). Debugged cert-manager configuration. Planned reminder/notification processes for certificate tracking.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>RabbitMQ Messaging</h4>
-                                <p>Configured vhosts, exchanges, queues, bindings. Debugged message routing, durable settings, subscriber issues. Supported RabbitMQ in AKS with RabbitmqCluster CRD.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>Data Integration & APIs</h4>
-                                <p>Raw JSON ingestion, FTP/SSIS feeds, API data pipelines. Planned ADF migration for data loads. Created source-to-destination field mappings.</p>
-                            </div>
-                            <div class="feature-box">
-                                <h4>SAML SSO & Auth</h4>
-                                <p>Implemented SAML SSO flows with NestJS backend and Angular frontend. SAML response validation, JWT generation, redirect handling, identity provider integration.</p>
-                            </div>
-                        </div>
-
-                        <div style="background: var(--monokai-dark); border: 2px solid var(--monokai-yellow); padding: 1.5rem; border-radius: 6px; margin-top: 2rem; margin-bottom: 1rem;">
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
-                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
-                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">15+</div>
-                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Microservices</div>
-                                </div>
-                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
-                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">500+</div>
-                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Field Users</div>
-                                </div>
-                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
-                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">6+</div>
-                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Core Tech</div>
-                                </div>
-                                <div style="text-align: center; background: var(--monokai-light); padding: 1rem; border-radius: 6px; border: 1px solid var(--monokai-yellow);">
-                                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--monokai-green); letter-spacing: 1px;">24/7</div>
-                                    <div style="color: var(--monokai-fg); font-size: 0.85rem; font-weight: 600;">Support</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="project-links">
-                            <a href="#experience" style="background: var(--monokai-dark); border-color: var(--monokai-yellow); color: var(--monokai-yellow);">👇 SEE FULL EXPERIENCE</a>
-                        </div>
-                    </div>
-                </div>
+        <div class="projects-grid">
+          <!-- note-chat -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>🤖 note-chat</h3>
+              <p>
+                Claude-Powered RAG Assistant with Production Reliability
+                Patterns
+              </p>
             </div>
+            <div class="project-body">
+              <div class="badges">
+                <span class="badge">Claude API</span>
+                <span class="badge">RAG</span>
+                <span class="badge">LangChain / LangGraph</span>
+                <span class="badge">NestJS</span>
+                <span class="badge">PostgreSQL</span>
+                <span class="badge">Production Patterns</span>
+              </div>
+
+              <p class="project-description">
+                A Claude-powered RAG assistant that answers natural-language
+                questions over CRM notes. It combines in-memory hybrid retrieval
+                with a LangChain/LangGraph pipeline and production reliability
+                patterns — circuit breaker, retry, multi-level caching, and
+                observability — built in from the start. (Portfolio project.)
+              </p>
+
+              <div
+                style="
+                  background: var(--monokai-dark);
+                  border: 2px solid var(--monokai-cyan);
+                  padding: 1.5rem;
+                  border-radius: 6px;
+                  margin-bottom: 2rem;
+                "
+              >
+                <h4
+                  style="
+                    color: var(--monokai-cyan);
+                    font-weight: 700;
+                    margin-bottom: 1rem;
+                    letter-spacing: 0.5px;
+                  "
+                >
+                  🏗️ ARCHITECTURE (LangGraph PIPELINE)
+                </h4>
+                <p
+                  style="
+                    color: var(--monokai-fg);
+                    margin-bottom: 1rem;
+                    line-height: 1.8;
+                    font-size: 0.95rem;
+                  "
+                >
+                  <strong style="color: var(--monokai-green)">Classify</strong>
+                  - Chain-of-thought complexity check routes simple vs. complex
+                  queries<br />
+                  <strong style="color: var(--monokai-green)">Retrieve</strong>
+                  - In-memory hybrid search: BM25 + Jaccard token overlap +
+                  metadata boosts, fused 50/30/20<br />
+                  <strong style="color: var(--monokai-green)">Select</strong> -
+                  Importance-weighted chunk selection within a 5K-token
+                  budget<br />
+                  <strong style="color: var(--monokai-green)">Generate</strong>
+                  - Pass selected chunks to Claude for evidence-based answers<br />
+                  <strong style="color: var(--monokai-green)"
+                    >Orchestration</strong
+                  >
+                  - LangChain/LangGraph state machine with conditional routing
+                  between steps
+                </p>
+              </div>
+
+              <h4
+                style="
+                  color: var(--monokai-cyan);
+                  font-weight: 700;
+                  margin-bottom: 1rem;
+                  letter-spacing: 0.5px;
+                "
+              >
+                ⚙️ PRODUCTION PATTERNS (6 CORE SYSTEMS)
+              </h4>
+              <div class="features-showcase">
+                <div class="feature-box">
+                  <h4>Circuit Breaker</h4>
+                  <p>
+                    CLOSED → OPEN → HALF_OPEN. Prevents cascading failures.
+                    Fails fast, recovers automatically after 60s timeout.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Retry Logic</h4>
+                  <p>
+                    Exponential backoff (100ms → 200ms → 400ms). Handles
+                    transient failures gracefully. Max 3 retries.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Multi-Level Caching</h4>
+                  <p>
+                    Exact-match (hash) and near-duplicate extraction caches plus
+                    a response cache, so repeat or near-identical inputs skip
+                    redundant Claude calls.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Model Routing</h4>
+                  <p>
+                    Simple queries → Claude Haiku (cheap, fast). Complex → Opus
+                    (quality). Routed by query complexity to control cost.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Observability</h4>
+                  <p>
+                    Metrics endpoints tracking latency, cost-per-call, cache-hit
+                    rate, candidates retrieved, and context utilization.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Context Management</h4>
+                  <p>
+                    Chunking (~500 tokens with ~50-token overlap) and
+                    importance-weighted selection (0.7 × relevance + 0.3 ×
+                    recency) within a 5K-token budget.
+                  </p>
+                </div>
+              </div>
+
+              <div class="metrics">
+                <div class="metrics-grid">
+                  <div class="metric">
+                    <div class="metric-value">88%</div>
+                    <div class="metric-label">Accuracy (50-query eval set)</div>
+                  </div>
+                  <div class="metric">
+                    <div class="metric-value">50/30/20</div>
+                    <div class="metric-label">BM25 / Jaccard / Metadata</div>
+                  </div>
+                  <div class="metric">
+                    <div class="metric-value">5K</div>
+                    <div class="metric-label">Token Context Budget</div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="
+                  background: var(--monokai-dark);
+                  border: 2px solid var(--monokai-orange);
+                  padding: 1.5rem;
+                  border-radius: 6px;
+                  margin-bottom: 2rem;
+                "
+              >
+                <h4
+                  style="
+                    color: var(--monokai-orange);
+                    font-weight: 700;
+                    margin-bottom: 1rem;
+                    letter-spacing: 0.5px;
+                  "
+                >
+                  📚 DESIGN DECISIONS
+                </h4>
+                <p
+                  style="
+                    color: var(--monokai-fg);
+                    margin-bottom: 0.8rem;
+                    line-height: 1.8;
+                    font-size: 0.95rem;
+                  "
+                >
+                  <strong style="color: var(--monokai-green)"
+                    >Why hybrid lexical retrieval?</strong
+                  >
+                  An early TF-IDF approach scored relevant notes near zero on
+                  matching queries. Rebuilt as BM25 + Jaccard + metadata fusion,
+                  which fixed retrieval on the eval set.
+                </p>
+                <p
+                  style="
+                    color: var(--monokai-fg);
+                    margin-bottom: 0.8rem;
+                    line-height: 1.8;
+                    font-size: 0.95rem;
+                  "
+                >
+                  <strong style="color: var(--monokai-green)"
+                    >Why Haiku + Opus?</strong
+                  >
+                  Route by query complexity — cheap/fast model for simple
+                  lookups, stronger model for complex reasoning — instead of
+                  paying for the big model on every call.
+                </p>
+                <p
+                  style="
+                    color: var(--monokai-fg);
+                    margin-bottom: 0.8rem;
+                    line-height: 1.8;
+                    font-size: 0.95rem;
+                  "
+                >
+                  <strong style="color: var(--monokai-green)"
+                    >Why Circuit Breaker?</strong
+                  >
+                  The Claude API can fail. Fail fast, recover automatically,
+                  don't cascade failures.
+                </p>
+                <p
+                  style="
+                    color: var(--monokai-fg);
+                    line-height: 1.8;
+                    font-size: 0.95rem;
+                  "
+                >
+                  <strong style="color: var(--monokai-green)"
+                    >Next step:</strong
+                  >
+                  Dense embeddings + pgvector (and cross-encoder reranking) to
+                  add true semantic retrieval at scale.
+                </p>
+              </div>
+
+              <div class="project-links">
+                <a
+                  href="https://github.com/karthikkalletla97/note-chat"
+                  target="_blank"
+                  >📂 VIEW CODE</a
+                >
+                <a
+                  href="https://github.com/karthikkalletla97/note-chat/blob/main/docs/ARCHITECTURE.md"
+                  target="_blank"
+                  >🏗️ ARCHITECTURE</a
+                >
+                <a
+                  href="https://github.com/karthikkalletla97/note-chat/blob/main/docs/DESIGN_DECISIONS.md"
+                  target="_blank"
+                  >💡 DECISIONS</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Helm43 -->
+          <div class="project-card">
+            <div
+              class="project-header"
+              style="
+                background: var(--monokai-dark);
+                border-bottom-color: var(--monokai-yellow);
+              "
+            >
+              <h3 style="color: var(--monokai-yellow)">
+                🏢 Helm43: Full-Stack Production Systems
+              </h3>
+              <p>
+                Backend, Frontend, Database, DevOps, Kubernetes for 500+ Field
+                Users
+              </p>
+            </div>
+            <div class="project-body">
+              <div class="badges">
+                <span class="badge">NestJS</span>
+                <span class="badge">Spring Boot</span>
+                <span class="badge">Angular</span>
+                <span class="badge">PostgreSQL</span>
+                <span class="badge">Kubernetes</span>
+                <span class="badge">Azure AKS</span>
+              </div>
+
+              <p class="project-description">
+                Full-stack Software Engineer at Helm43 (Mar 2024 - Present)
+                contributing across backend development, frontend fixes, SQL
+                reporting, DevOps pipelines, and Kubernetes deployments.
+                Supporting multiple production applications serving 500+ field
+                users with high reliability requirements.
+              </p>
+
+              <h4
+                style="
+                  color: var(--monokai-cyan);
+                  font-weight: 700;
+                  margin-bottom: 1rem;
+                  letter-spacing: 0.5px;
+                "
+              >
+                💻 BACKEND DEVELOPMENT
+              </h4>
+              <div class="features-showcase">
+                <div class="feature-box">
+                  <h4>NestJS Microservices</h4>
+                  <p>
+                    Built and enhanced microservices for dealer, personnel,
+                    mentor-apprentice, allocation, admin, and reporting systems.
+                    Controllers, services, DTOs, message patterns.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Mentor-Apprentice Dashboard</h4>
+                  <p>
+                    Designed APIs for personnel feed, relationship save/delete,
+                    network graphs, role-based permissions. Complex business
+                    rules for technician eligibility.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>HINO Honors Automation</h4>
+                  <p>
+                    Automated 2025-2026 HINO Honors program with rule execution,
+                    dashboard refresh, Excel staging, monthly report generation.
+                    Handles 5+ manager roles with complex qualification logic.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>SQL Server & Reporting</h4>
+                  <p>
+                    Complex stored procedures, temp tables, joins, aggregations.
+                    Debugged report duplication, incorrect totals, missing
+                    dealer relationships. Worked with ClientRewards, BulkOil
+                    databases.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>BulkOil Application</h4>
+                  <p>
+                    Supported BulkOil codebase for data validation and
+                    reporting. Investigated dealer/distributor PA code
+                    relationships. Resolved contract-related validation issues.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Spring Boot & JSP</h4>
+                  <p>
+                    Worked on legacy Java/JSP applications. Client dashboards,
+                    internal tools, controller logic, XML configuration, cache
+                    handling, support flows.
+                  </p>
+                </div>
+              </div>
+
+              <h4
+                style="
+                  color: var(--monokai-yellow);
+                  font-weight: 700;
+                  margin-top: 2rem;
+                  margin-bottom: 1rem;
+                  letter-spacing: 0.5px;
+                "
+              >
+                🚀 DEVOPS & INFRASTRUCTURE
+              </h4>
+              <div class="features-showcase">
+                <div class="feature-box">
+                  <h4>Azure DevOps Pipelines</h4>
+                  <p>
+                    Debugged Node/npm versions, NestJS builds, Angular failures.
+                    Handled npm authentication, Nexus downloads, checksum
+                    errors. Deployed across Dev/QA/UAT/Prod environments.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Kubernetes/AKS</h4>
+                  <p>
+                    Investigated pod failures, checked logs, environment
+                    variables, config mounts, rollout status. Worked with
+                    namespaces, deployments, services, ingress, secrets. 15+
+                    microservices migrated.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Cert-Manager & TLS</h4>
+                  <p>
+                    Handled certificate renewal issues (90-day expiry cycles).
+                    Debugged cert-manager configuration. Planned
+                    reminder/notification processes for certificate tracking.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>RabbitMQ Messaging</h4>
+                  <p>
+                    Configured vhosts, exchanges, queues, bindings. Debugged
+                    message routing, durable settings, subscriber issues.
+                    Supported RabbitMQ in AKS with RabbitmqCluster CRD.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>Data Integration & APIs</h4>
+                  <p>
+                    Raw JSON ingestion, FTP/SSIS feeds, API data pipelines.
+                    Planned ADF migration for data loads. Created
+                    source-to-destination field mappings.
+                  </p>
+                </div>
+                <div class="feature-box">
+                  <h4>SAML SSO & Auth</h4>
+                  <p>
+                    Implemented SAML SSO flows with NestJS backend and Angular
+                    frontend. SAML response validation, JWT generation, redirect
+                    handling, identity provider integration.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                style="
+                  background: var(--monokai-dark);
+                  border: 2px solid var(--monokai-yellow);
+                  padding: 1.5rem;
+                  border-radius: 6px;
+                  margin-top: 2rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                    gap: 1rem;
+                  "
+                >
+                  <div
+                    style="
+                      text-align: center;
+                      background: var(--monokai-light);
+                      padding: 1rem;
+                      border-radius: 6px;
+                      border: 1px solid var(--monokai-yellow);
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 1.8rem;
+                        font-weight: 900;
+                        color: var(--monokai-green);
+                        letter-spacing: 1px;
+                      "
+                    >
+                      15+
+                    </div>
+                    <div
+                      style="
+                        color: var(--monokai-fg);
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                      "
+                    >
+                      Microservices
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      text-align: center;
+                      background: var(--monokai-light);
+                      padding: 1rem;
+                      border-radius: 6px;
+                      border: 1px solid var(--monokai-yellow);
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 1.8rem;
+                        font-weight: 900;
+                        color: var(--monokai-green);
+                        letter-spacing: 1px;
+                      "
+                    >
+                      500+
+                    </div>
+                    <div
+                      style="
+                        color: var(--monokai-fg);
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                      "
+                    >
+                      Field Users
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      text-align: center;
+                      background: var(--monokai-light);
+                      padding: 1rem;
+                      border-radius: 6px;
+                      border: 1px solid var(--monokai-yellow);
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 1.8rem;
+                        font-weight: 900;
+                        color: var(--monokai-green);
+                        letter-spacing: 1px;
+                      "
+                    >
+                      6+
+                    </div>
+                    <div
+                      style="
+                        color: var(--monokai-fg);
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                      "
+                    >
+                      Core Tech
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      text-align: center;
+                      background: var(--monokai-light);
+                      padding: 1rem;
+                      border-radius: 6px;
+                      border: 1px solid var(--monokai-yellow);
+                    "
+                  >
+                    <div
+                      style="
+                        font-size: 1.8rem;
+                        font-weight: 900;
+                        color: var(--monokai-green);
+                        letter-spacing: 1px;
+                      "
+                    >
+                      24/7
+                    </div>
+                    <div
+                      style="
+                        color: var(--monokai-fg);
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                      "
+                    >
+                      Support
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-links">
+                <a
+                  href="#experience"
+                  style="
+                    background: var(--monokai-dark);
+                    border-color: var(--monokai-yellow);
+                    color: var(--monokai-yellow);
+                  "
+                  >👇 SEE FULL EXPERIENCE</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Experience Timeline -->
     <section class="experience-section" id="experience">
-        <div class="container">
-            <h2>EXPERIENCE JOURNEY</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Helm43, LLC</h3>
-                        <div class="company">Software Engineer</div>
-                        <div class="period">Mar 2024 – Present | Plymouth, MI</div>
-                        <ul>
-                            <li>Developed and maintained full-stack applications across backend (NestJS/Spring Boot), frontend (Angular), database (SQL Server/PostgreSQL), and infrastructure (Kubernetes/AKS)</li>
-                            <li>Built and enhanced NestJS microservices for dealer management, personnel systems, mentor-apprentice assignment, admin tools, and reporting applications</li>
-                            <li>Supported Mentor-Apprentice Dashboard with personnel feed APIs, relationship save/delete flows, role-based edit permissions, and position-based eligibility rules</li>
-                            <li>Automated HINO Honors program (2025-2026) including raw data refresh, rule execution, dashboard refresh, Excel staging, and monthly client reporting</li>
-                            <li>Wrote and debugged complex SQL Server stored procedures, temp tables, joins, and aggregations for programs like HINO Honors and BulkOil</li>
-                            <li>Investigated and resolved reporting issues involving duplicate rows, incorrect totals, missing dealer relationships, and formula errors</li>
-                            <li>Developed Azure DevOps YAML pipelines for Node.js, NestJS, Angular, and Java applications with npm builds, Docker image creation, ACR push, and AKS deployment</li>
-                            <li>Debugged Kubernetes deployments on AKS, including pod logs, environment configuration, rollout status, ingress setup, and namespace management</li>
-                            <li>Configured RabbitMQ messaging in AKS with exchanges, queues, vhosts, and bindings. Debugged subscriber behavior and durable settings</li>
-                            <li>Implemented SAML SSO flows with NestJS backend callbacks, SAML response validation, JWT generation, and Angular frontend redirect handling</li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="container">
+        <h2>EXPERIENCE JOURNEY</h2>
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Wayne State University</h3>
-                        <div class="company">Student Research Assistant</div>
-                        <div class="period">Jan 2023 – Mar 2024 | Detroit, MI</div>
-                        <ul>
-                            <li>Built PPS Swap, a full-stack web app (Java/Spring, microservices) with a ~25% response-time improvement after refactor</li>
-                            <li>Built Blog Post, a Reddit-style forum (Angular/TypeScript + Spring Boot, normalized MySQL schema from ER diagram)</li>
-                            <li>Implemented JWT authentication with role-based authorization and single sign-on</li>
-                            <li>Deployed applications on AWS (S3, EC2, Elastic Beanstalk)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Meritor, Inc</h3>
-                        <div class="company">Software Engineer Intern</div>
-                        <div class="period">Jul 2022 – Dec 2022 | Troy, MI</div>
-                        <ul>
-                            <li>Migrated legacy monolith to Spring Boot microservices (13% performance improvement)</li>
-                            <li>Designed and optimized REST APIs for scalability</li>
-                            <li>Deployed on AWS Elastic Beanstalk with infrastructure optimization (20% improvement)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Sub-K Impact Solutions Ltd.</h3>
-                        <div class="company">Software Engineer</div>
-                        <div class="period">May 2019 – Jul 2021 | Hyderabad, India</div>
-                        <ul>
-                            <li>Built a secure banking application (MVC) that raised $4M+ and grew daily transactions 18%</li>
-                            <li>Developed RESTful APIs and optimized T-SQL stored procedures, cutting dashboard load time 40%</li>
-                            <li>Applied Agile, TDD, and CI/CD best practices across the team</li>
-                            <li>Deployed AWS solutions (Elastic Beanstalk, Lambda, S3)</li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Helm43, LLC</h3>
+              <div class="company">Software Engineer</div>
+              <div class="period">Mar 2024 – Present | Plymouth, MI</div>
+              <ul>
+                <li>
+                  Developed and maintained full-stack applications across
+                  backend (NestJS/Spring Boot), frontend (Angular), database
+                  (SQL Server/PostgreSQL), and infrastructure (Kubernetes/AKS)
+                </li>
+                <li>
+                  Built and enhanced NestJS microservices for dealer management,
+                  personnel systems, mentor-apprentice assignment, admin tools,
+                  and reporting applications
+                </li>
+                <li>
+                  Supported Mentor-Apprentice Dashboard with personnel feed
+                  APIs, relationship save/delete flows, role-based edit
+                  permissions, and position-based eligibility rules
+                </li>
+                <li>
+                  Automated HINO Honors program (2025-2026) including raw data
+                  refresh, rule execution, dashboard refresh, Excel staging, and
+                  monthly client reporting
+                </li>
+                <li>
+                  Wrote and debugged complex SQL Server stored procedures, temp
+                  tables, joins, and aggregations for programs like HINO Honors
+                  and BulkOil
+                </li>
+                <li>
+                  Investigated and resolved reporting issues involving duplicate
+                  rows, incorrect totals, missing dealer relationships, and
+                  formula errors
+                </li>
+                <li>
+                  Developed Azure DevOps YAML pipelines for Node.js, NestJS,
+                  Angular, and Java applications with npm builds, Docker image
+                  creation, ACR push, and AKS deployment
+                </li>
+                <li>
+                  Debugged Kubernetes deployments on AKS, including pod logs,
+                  environment configuration, rollout status, ingress setup, and
+                  namespace management
+                </li>
+                <li>
+                  Configured RabbitMQ messaging in AKS with exchanges, queues,
+                  vhosts, and bindings. Debugged subscriber behavior and durable
+                  settings
+                </li>
+                <li>
+                  Implemented SAML SSO flows with NestJS backend callbacks, SAML
+                  response validation, JWT generation, and Angular frontend
+                  redirect handling
+                </li>
+              </ul>
             </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Wayne State University</h3>
+              <div class="company">Student Research Assistant</div>
+              <div class="period">Jan 2023 – Mar 2024 | Detroit, MI</div>
+              <ul>
+                <li>
+                  Built PPS Swap, a full-stack web app (Java/Spring,
+                  microservices) with a ~25% response-time improvement after
+                  refactor
+                </li>
+                <li>
+                  Built Blog Post, a Reddit-style forum (Angular/TypeScript +
+                  Spring Boot, normalized MySQL schema from ER diagram)
+                </li>
+                <li>
+                  Implemented JWT authentication with role-based authorization
+                  and single sign-on
+                </li>
+                <li>
+                  Deployed applications on AWS (S3, EC2, Elastic Beanstalk)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Meritor, Inc</h3>
+              <div class="company">Software Engineer Intern</div>
+              <div class="period">Jul 2022 – Dec 2022 | Troy, MI</div>
+              <ul>
+                <li>
+                  Migrated legacy monolith to Spring Boot microservices (13%
+                  performance improvement)
+                </li>
+                <li>Designed and optimized REST APIs for scalability</li>
+                <li>
+                  Deployed on AWS Elastic Beanstalk with infrastructure
+                  optimization (20% improvement)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>Sub-K Impact Solutions Ltd.</h3>
+              <div class="company">Software Engineer</div>
+              <div class="period">May 2019 – Jul 2021 | Hyderabad, India</div>
+              <ul>
+                <li>
+                  Built a secure banking application (MVC) that raised $4M+ and
+                  grew daily transactions 18%
+                </li>
+                <li>
+                  Developed RESTful APIs and optimized T-SQL stored procedures,
+                  cutting dashboard load time 40%
+                </li>
+                <li>
+                  Applied Agile, TDD, and CI/CD best practices across the team
+                </li>
+                <li>Deployed AWS solutions (Elastic Beanstalk, Lambda, S3)</li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills">
-        <div class="container">
-            <h2>TECHNICAL SKILLS</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>AI/LLM Systems</h3>
-                    <p><span class="highlight">Claude API</span>, retrieval-augmented generation (RAG), LangChain / LangGraph, hybrid lexical retrieval (BM25 + token overlap), model routing, chain-of-thought reasoning, evaluation harnesses</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Backend & Frameworks</h3>
-                    <p><span class="highlight">TypeScript, NestJS</span>, Java Spring Boot, microservices architecture, RESTful APIs, Type ORM, database design & optimization</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Infrastructure & DevOps</h3>
-                    <p><span class="highlight">Kubernetes (AKS), Docker</span>, Azure DevOps CI/CD, Helm, AWS (Elastic Beanstalk, EC2, S3), zero-downtime deployments</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Production Patterns</h3>
-                    <p><span class="highlight">Circuit breaker, retry logic</span>, multi-level caching (exact-match + near-duplicate), distributed systems, service isolation, fault tolerance</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Databases & Data</h3>
-                    <p><span class="highlight">PostgreSQL, SQL Server</span>, Type ORM, MongoDB, query optimization, schema design, data migration, complex reporting</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Observability & Support</h3>
-                    <p>Latency tracking (p50, p99), error rate monitoring, cost analysis, cache metrics, production alerting, incident response, root-cause analysis</p>
-                </div>
-            </div>
+      <div class="container">
+        <h2>TECHNICAL SKILLS</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>AI/LLM Systems</h3>
+            <p>
+              <span class="highlight">Claude API</span>, retrieval-augmented
+              generation (RAG), LangChain / LangGraph, hybrid lexical retrieval
+              (BM25 + token overlap), model routing, chain-of-thought reasoning,
+              evaluation harnesses
+            </p>
+          </div>
+          <div class="skill-card">
+            <h3>Backend & Frameworks</h3>
+            <p>
+              <span class="highlight">TypeScript, NestJS</span>, Java Spring
+              Boot, microservices architecture, RESTful APIs, Type ORM, database
+              design & optimization
+            </p>
+          </div>
+          <div class="skill-card">
+            <h3>Infrastructure & DevOps</h3>
+            <p>
+              <span class="highlight">Kubernetes (AKS), Docker</span>, Azure
+              DevOps CI/CD, Helm, AWS (Elastic Beanstalk, EC2, S3),
+              zero-downtime deployments
+            </p>
+          </div>
+          <div class="skill-card">
+            <h3>Production Patterns</h3>
+            <p>
+              <span class="highlight">Circuit breaker, retry logic</span>,
+              multi-level caching (exact-match + near-duplicate), distributed
+              systems, service isolation, fault tolerance
+            </p>
+          </div>
+          <div class="skill-card">
+            <h3>Databases & Data</h3>
+            <p>
+              <span class="highlight">PostgreSQL, SQL Server</span>, Type ORM,
+              MongoDB, query optimization, schema design, data migration,
+              complex reporting
+            </p>
+          </div>
+          <div class="skill-card">
+            <h3>Observability & Support</h3>
+            <p>
+              Latency tracking (p50, p99), error rate monitoring, cost analysis,
+              cache metrics, production alerting, incident response, root-cause
+              analysis
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <div class="container">
-            <h2>LET'S BUILD SOMETHING</h2>
-            <p class="contact-description">
-                Interested in deploying AI systems reliably? Or discussing production systems design? Let's talk.
-            </p>
-            <div class="contact-links">
-                <a href="mailto:karthikkalletla009@gmail.com">📧 EMAIL</a>
-                <a href="https://www.linkedin.com/in/kk09/" target="_blank">💼 LINKEDIN</a>
-                <a href="https://github.com/karthikkalletla97/" target="_blank">🐙 GITHUB</a>
-                <a href="tel:+13139136503">📱 CALL</a>
-            </div>
+      <div class="container">
+        <h2>LET'S BUILD SOMETHING</h2>
+        <p class="contact-description">
+          Interested in deploying AI systems reliably? Or discussing production
+          systems design? Let's talk.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:karthikkalletla009@gmail.com">📧 EMAIL</a>
+          <a href="https://www.linkedin.com/in/kk09/" target="_blank"
+            >💼 LINKEDIN</a
+          >
+          <a href="https://github.com/karthikkalletla97/" target="_blank"
+            >🐙 GITHUB</a
+          >
+          <a href="tel:+13139136503">📱 CALL</a>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Karthik Kalletla. Full-Stack &amp; AI/LLM Engineer.</p>
+      <p>&copy; 2026 Karthik Kalletla. Full-Stack &amp; AI/LLM Engineer.</p>
     </footer>
 
     <script>
-        // Smooth scroll behavior for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+      // Smooth scroll behavior for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
         });
+      });
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+      // Add animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px',
+      };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideUp 0.6s ease-out forwards';
-                }
-            });
-        }, observerOptions);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'slideUp 0.6s ease-out forwards';
+          }
+        });
+      }, observerOptions);
 
-        document.querySelectorAll('.project-card, .timeline-item, .skill-card').forEach(el => {
-            el.style.opacity = '0';
-            observer.observe(el);
+      document
+        .querySelectorAll('.project-card, .timeline-item, .skill-card')
+        .forEach((el) => {
+          el.style.opacity = '0';
+          observer.observe(el);
         });
     </script>
-</body>
+  </body>
 </html>
